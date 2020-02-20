@@ -29,6 +29,9 @@ function App() {
                     </HashRouter>
                 </div>
             </main>
+            <footer>
+                <p className="text-center pt-5 pb-5">Livescore Football</p>
+            </footer>
         </div>
     );
 }

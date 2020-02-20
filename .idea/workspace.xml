@@ -2,12 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a0652de3-72c7-4bff-9a33-4fd642176c4b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/BriefCard/BriefCard.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ContentRouting.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ContentRouting.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/app/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/App/App.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/app/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/App/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/pages/ClubsPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Pages/ClubsPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/pages/HomePage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Pages/HomePage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/pages/LeaguesPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Pages/LeaguesPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
     </list>
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -17,6 +21,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="HTML File" />
+        <option value="CSS File" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
@@ -25,22 +31,26 @@
   </component>
   <component name="ProjectId" id="1XrcZemJGolJ4VMu2S5Lx7uq6A3" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="autoscrollFromSource" value="true" />
+    <option name="autoscrollToSource" value="true" />
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
   <component name="PropertiesComponent">
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="list.type.of.created.stylesheet" value="CSS" />
   </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
-    </option>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/components/pages" />
+      <recent name="$PROJECT_DIR$/src/components/app" />
+    </key>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -57,7 +67,25 @@
       <workItem from="1581807831944" duration="21000" />
       <workItem from="1581807942592" duration="1884000" />
       <workItem from="1581836503211" duration="242000" />
+      <workItem from="1581837031086" duration="1208000" />
+      <workItem from="1581838280160" duration="1262000" />
+      <workItem from="1582219171787" duration="3125000" />
     </task>
+    <task id="LOCAL-00001" summary="Add bootstrap + react-bootstrap">
+      <created>1581838217432</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1581838217432</updated>
+    </task>
+    <task id="LOCAL-00002" summary="virtual routing with react dom router">
+      <created>1582220642164</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1582220642164</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -75,5 +103,38 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Add bootstrap + react-bootstrap" />
+    <MESSAGE value="virtual routing with react dom router" />
+    <option name="LAST_COMMIT_MESSAGE" value="virtual routing with react dom router" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="88" y="23" key="CommitChangelistDialog2" timestamp="1582220641662">
+      <screen x="0" y="23" width="1440" height="821" />
+    </state>
+    <state x="88" y="23" key="CommitChangelistDialog2/0.23.1440.821@0.23.1440.821" timestamp="1582220641662" />
+    <state x="45" y="71" width="1350" height="726" key="DiffContextDialog" timestamp="1582219356478">
+      <screen x="0" y="23" width="1440" height="822" />
+    </state>
+    <state x="45" y="71" width="1350" height="726" key="DiffContextDialog/0.23.1440.822@0.23.1440.822" timestamp="1582219356478" />
+    <state x="100" y="123" width="3000" height="1510" key="DiffContextDialog/0.23.3200.1710@0.23.3200.1710" timestamp="1582219221406" />
+    <state width="625" height="501" key="SwitcherDM" timestamp="1582221885136">
+      <screen x="0" y="23" width="1440" height="822" />
+    </state>
+    <state width="625" height="500" key="SwitcherDM/0.23.1440.821@0.23.1440.821" timestamp="1582221229828" />
+    <state width="625" height="501" key="SwitcherDM/0.23.1440.822@0.23.1440.822" timestamp="1582221885136" />
+    <state x="220" y="112" key="Vcs.Push.Dialog.v2" timestamp="1581838220101">
+      <screen x="0" y="23" width="1440" height="821" />
+    </state>
+    <state x="220" y="112" key="Vcs.Push.Dialog.v2/0.23.1440.821@0.23.1440.821" timestamp="1581838220101" />
+    <state x="238" y="23" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1582221166089">
+      <screen x="0" y="23" width="1440" height="821" />
+    </state>
+    <state x="238" y="23" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.23.1440.821@0.23.1440.821" timestamp="1582221166089" />
+    <state x="301" y="23" width="838" height="1032" key="search.everywhere.popup" timestamp="1582220524126">
+      <screen x="0" y="23" width="1440" height="821" />
+    </state>
+    <state x="301" y="23" width="838" height="1032" key="search.everywhere.popup/0.23.1440.821@0.23.1440.821" timestamp="1582220524126" />
   </component>
 </project>
