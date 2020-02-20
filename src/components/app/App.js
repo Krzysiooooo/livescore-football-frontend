@@ -1,27 +1,35 @@
 import React from 'react';
 import './App.css';
-import {Col, Container, Row} from "react-bootstrap";
+import {Container} from "react-bootstrap";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
-import NavDropdown from "react-bootstrap/NavDropdown";
-import Form from "react-bootstrap/Form";
-import FormControl from "react-bootstrap/FormControl";
-import Button from "react-bootstrap/Button";
+import {HashRouter} from "react-router-dom";
+import ContentRouting from "../ContentRouting";
 
 function App() {
     return (
-        <Navbar bg="light" expand="lg">
-            <Container>
-                <Navbar.Brand href="#home">Livescore Football</Navbar.Brand>
-                <Navbar.Toggle aria-controls="basic-navbar-nav"/>
-                <Navbar.Collapse id="basic-navbar-nav">
-                    <Nav className="mr-auto">
-                        <Nav.Link href="#home">Ligi</Nav.Link>
-                        <Nav.Link href="#link">Kluby</Nav.Link>
-                    </Nav>
-                </Navbar.Collapse>
-            </Container>
-        </Navbar>
+        <div>
+            <Navbar bg="light" expand="lg">
+                <Container>
+                    <Navbar.Brand href="#home">Livescore Football</Navbar.Brand>
+                    <Navbar.Toggle aria-controls="basic-navbar-nav"/>
+                    <Navbar.Collapse id="basic-navbar-nav">
+                        <Nav className="mr-auto">
+                            <Nav.Link href="#/">Start</Nav.Link>
+                            <Nav.Link href="#leagues">Ligi</Nav.Link>
+                            <Nav.Link href="#clubs">Kluby</Nav.Link>
+                        </Nav>
+                    </Navbar.Collapse>
+                </Container>
+            </Navbar>
+            <main role="main">
+                <div className="container">
+                    <HashRouter>
+                        <ContentRouting></ContentRouting>
+                    </HashRouter>
+                </div>
+            </main>
+        </div>
     );
 }
 
