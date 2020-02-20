@@ -7,19 +7,19 @@ class BriefCard extends React.Component {
 
     constructor(props) {
         super();
-        this.state = {id: props['data-id']};
+        this.state = {team: props['data-team']};
     }
 
     render() {
         return <Card className="brief-card">
-            <Card.Img variant="top" src={`https://media.api-football.com/leagues/${this.state.id}.png`}/>
+            <Card.Img variant="top" src={(this.state.team.logo)}/>
             <Card.Body>
-                <Card.Title>Card Title</Card.Title>
+                <Card.Title>{this.state.team.name}</Card.Title>
                 <Card.Text>
-                    Some quick example text to build on the card title and make up the bulk of
-                    the card's content.
+                    From: {this.state.team.country} <br/>
+                    Founded: {this.state.team.founded}
                 </Card.Text>
-                <Button variant="primary">Go somewhere</Button>
+                <Button variant="primary">Show details</Button>
             </Card.Body>
         </Card>
 
