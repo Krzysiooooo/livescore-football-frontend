@@ -2,24 +2,27 @@ import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import React from "react";
 import './BriefCard.css'
+import {Image} from "react-bootstrap";
 
 class BriefCard extends React.Component {
 
     constructor(props) {
         super();
-        this.state = {team: props['data-team']};
+        this.state = {league: props['data-league']};
     }
 
     render() {
         return <Card className="brief-card">
-            <Card.Img variant="top" src={(this.state.team.logo)}/>
             <Card.Body>
-                <Card.Title>{this.state.team.name}</Card.Title>
+                <div class="image">
+                    <Image src={this.state.league.logo}></Image>
+                </div>
+                <Card.Title>{this.state.league.name}</Card.Title>
                 <Card.Text>
-                    From: {this.state.team.country} <br/>
-                    Founded: {this.state.team.founded}
+                    From: {this.state.league.country} <br/>
+                    Founded: {this.state.league.founded}
                 </Card.Text>
-                <Button variant="primary">Show details</Button>
+                <Button href={`#/league/${this.state.league.league_id}`} variant="primary">Show details</Button>
             </Card.Body>
         </Card>
 

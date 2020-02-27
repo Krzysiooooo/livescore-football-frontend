@@ -5,16 +5,16 @@ import MockApi from "../../services/MockApi";
 
 class HomePage extends React.Component {
 
+    constructor() {
+        super();
+        this.state = {leagues: MockApi.getFavoritesLeagues()};
+    }
+
     render() {
         return <div>
-            <h2>Start</h2>
-            <h3>Leagues</h3>
+            <h2>Favorites leagues</h2>
             <CardDeck>
-                <BriefCard data-team={MockApi.getTeam(5)}></BriefCard>
-                <BriefCard data-team={MockApi.getTeam(10)}></BriefCard>
-                <BriefCard data-team={MockApi.getTeam(3)}></BriefCard>
-                <BriefCard data-team={MockApi.getTeam(9)}></BriefCard>
-                <BriefCard data-team={MockApi.getTeam(8)}></BriefCard>
+                {this.state.leagues.map(league => <BriefCard key={league.league_id} data-league={league}></BriefCard>)}
             </CardDeck>
         </div>
     }

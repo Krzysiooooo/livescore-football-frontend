@@ -22,7 +22,7 @@ function App() {
                     </Navbar.Collapse>
                 </Container>
             </Navbar>
-            <main role="main">
+            <main role="main" className="pt-4">
                 <div className="container">
                     <HashRouter>
                         <ContentRouting></ContentRouting>

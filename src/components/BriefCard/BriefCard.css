@@ -2,7 +2,15 @@
     width: 18rem;
 }
 
-.brief-card img.card-img-top {
+.brief-card .card-body .image {
+    width: 100%;
+    min-height: 160px;
+    text-align: center;
+}
+
+.brief-card .card-body .image img {
     padding: 20px;
-    background: rgba(223, 220, 225, 0.31);
+    margin: auto;
+    max-height: 150px;
+    max-width: 100%;
 }
