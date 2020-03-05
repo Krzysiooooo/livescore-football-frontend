@@ -11,13 +11,11 @@ function App() {
         <div>
             <Navbar bg="light" expand="lg">
                 <Container>
-                    <Navbar.Brand href="#home">Livescore Football</Navbar.Brand>
+                    <Navbar.Brand href="#/">Livescore Football</Navbar.Brand>
                     <Navbar.Toggle aria-controls="basic-navbar-nav"/>
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="mr-auto">
-                            <Nav.Link href="#/">Start</Nav.Link>
                             <Nav.Link href="#leagues">Ligi</Nav.Link>
-                            <Nav.Link href="#clubs">Kluby</Nav.Link>
                         </Nav>
                     </Navbar.Collapse>
                 </Container>

@@ -14,7 +14,7 @@ class BriefCard extends React.Component {
     render() {
         return <Card className="brief-card">
             <Card.Body>
-                <div class="image">
+                <div className="image">
                     <Image src={this.state.league.logo}></Image>
                 </div>
                 <Card.Title>{this.state.league.name}</Card.Title>
