@@ -1245,8 +1245,8 @@ const MockApi = {
         const ids = ["2", "35", "55", "30"];
         return ids.map(id => leagues.api.leagues[id]);
     },
-    getLeagues:() =>{
-        return httpRequest('/leagues', 'GET');
+    getLeagues:(page) =>{
+        return httpRequest(`/leagues?page=${page}`, 'GET');
     },
     getLeague: (id) => {
         return leagues.api.leagues[String(id)];
