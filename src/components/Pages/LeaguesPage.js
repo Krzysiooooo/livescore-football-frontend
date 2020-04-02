@@ -1,5 +1,5 @@
 import React from 'react'
-import MockApi from "../../services/MockApi";
+import BackendApi from "../../services/BackendApi";
 import BriefCard from "../BriefCard/BriefCard";
 import {Col, Row, Pagination} from "react-bootstrap";
 
@@ -14,7 +14,7 @@ class LeaguesPage extends React.Component {
             paginationItems: [1, 2, 3, 4, 5]
         };
 
-        MockApi.getLeagues(0).then((leagues) => {
+        BackendApi.getLeagues().then((leagues) => {
             this.setState({leagues: leagues});
         });
         this.onPageChange = this.onPageChange.bind(this);
@@ -24,7 +24,7 @@ class LeaguesPage extends React.Component {
     onPageChange(event) {
         const page = parseInt(event.target.innerText);
         this.setState({activePage: page});
-        MockApi.getLeagues(page).then((leagues) => {
+        BackendApi.getLeagues({page: page}).then((leagues) => {
             this.setState({leagues: leagues});
         });
     }

@@ -1,5 +1,5 @@
 import React from 'react'
-import MockApi from "../../services/MockApi";
+import BackendApi from "../../services/BackendApi";
 import {Image} from "react-bootstrap";
 
 class LeaguePage extends React.Component {
@@ -8,7 +8,7 @@ class LeaguePage extends React.Component {
         super();
         this.state = {league:{}};
         const id = props.match.params.id;
-        MockApi.getLeague(id).then((league) => {
+        BackendApi.getLeague(id).then((league) => {
             this.setState({league: league});
         });
     }

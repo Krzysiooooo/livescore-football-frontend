@@ -1,13 +1,21 @@
 import React from 'react'
 import BriefCard from "../BriefCard/BriefCard";
 import {CardDeck} from "react-bootstrap";
-import MockApi from "../../services/MockApi";
+import BackendApi from "../../services/BackendApi";
 
 class HomePage extends React.Component {
 
     constructor() {
         super();
-        this.state = {leagues: MockApi.getFavoritesLeagues()};
+        this.state = {leagues: []};
+
+        const query = {
+            ids: ["2", "35", "55", "30"]
+        };
+
+        BackendApi.getLeagues(query).then(data => {
+            this.setState({leagues: data})
+        });
     }
 
     render() {
