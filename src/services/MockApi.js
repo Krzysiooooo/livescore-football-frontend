@@ -1231,9 +1231,9 @@ const leagues = {
 
 const API_ADDRESS = "http://localhost:4000";
 
-function httpRequest(path, method){
+function httpRequest(path, method) {
     const url = API_ADDRESS + path;
-    const config = { method: method };
+    const config = {method: method};
     return fetch(url, config).then(data => data.json());
 }
 
@@ -1245,11 +1245,11 @@ const MockApi = {
         const ids = ["2", "35", "55", "30"];
         return ids.map(id => leagues.api.leagues[id]);
     },
-    getLeagues:(page) =>{
+    getLeagues: (page) => {
         return httpRequest(`/leagues?page=${page}`, 'GET');
     },
     getLeague: (id) => {
-        return leagues.api.leagues[String(id)];
+        return httpRequest(`/league/${id}`, 'GET')
     }
 };
 

@@ -6,9 +6,11 @@ class LeaguePage extends React.Component {
 
     constructor(props) {
         super();
+        this.state = {league:{}};
         const id = props.match.params.id;
-        const league = MockApi.getLeague(id);
-        this.state = {league: league};
+        MockApi.getLeague(id).then((league) => {
+            this.setState({league: league});
+        });
     }
 
     render() {
