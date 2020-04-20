@@ -24,7 +24,11 @@ const BackendApi = {
     },
     getLeague: (id) => {
         return httpRequest(`/league/${id}`, 'GET');
+    },
+    getTeams: (leagueId) => {
+        return httpRequest(`/league/${leagueId}/teams`, 'GET');
     }
+
 };
 
 export default BackendApi;
