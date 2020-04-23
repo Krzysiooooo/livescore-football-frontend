@@ -1,0 +1,16 @@
+#league-page .card {
+    height: 225px;
+    color: black;
+}
+
+#league-page a:hover {
+    text-decoration: none;
+}
+
+#league-page a:hover .card {
+    background: #e9e9e9;
+}
+
+#league-page .card .card-body p {
+    overflow-wrap: normal;
+}

@@ -1,2 +1,2 @@
-Dokonczyc implementacje Endpointu teams/league_id na backendzie !  
-
+Create mock input element on leagues page for searching leagues
+Use React Bootstrap element (check forms section)
