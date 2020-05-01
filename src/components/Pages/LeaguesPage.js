@@ -1,7 +1,7 @@
 import React from 'react'
 import BackendApi from "../../services/BackendApi";
 import BriefCard from "../BriefCard/BriefCard";
-import {Col, Row, Pagination, Form, InputGroup} from "react-bootstrap";
+import {Col, Row, Pagination, Form, InputGroup, Button} from "react-bootstrap";
 
 class LeaguesPage extends React.Component {
     items = [];
@@ -39,7 +39,8 @@ class LeaguesPage extends React.Component {
         return <Pagination.Item key={i} active={i === this.state.activePage}
                                 onClick={this.onPageChange}>{i}</Pagination.Item>;
     }
-    search(){
+
+    search() {
 
     }
 
@@ -51,16 +52,18 @@ class LeaguesPage extends React.Component {
                     <Form>
                         <Form.Row>
                             <Form.Group as={Col} md="4">
-                                <InputGroup.Prepend>
-                                    <InputGroup.Text id="inputGroupPrepend">@</InputGroup.Text>
-                                </InputGroup.Prepend>
-                                <Form.Control
-                                    type="text"
-                                    name="search"
-                                    placeholder="Search league"
-                                    aria-describedby="inputGroupPrepend"
-                                    value={this.state.searchValue}
-                                    onChange={this.search}/>
+                                <InputGroup>
+                                    <Form.Control
+                                        type="text"
+                                        name="search"
+                                        placeholder="Search league"
+                                        aria-describedby="inputGroupPrepend"
+                                        value={this.state.searchValue}
+                                        onChange={this.search}/>
+                                    <InputGroup.Prepend>
+                                        <InputGroup.Text id="inputGroupPrepend" as={Button}>Search</InputGroup.Text>
+                                    </InputGroup.Prepend>
+                                </InputGroup>
                             </Form.Group>
                         </Form.Row>
                     </Form>
