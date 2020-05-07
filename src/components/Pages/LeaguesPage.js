@@ -43,7 +43,7 @@ class LeaguesPage extends React.Component {
     }
 
     search() {
-        BackendApi.getLeagues({search:this.state.searchValue});
+        BackendApi.getLeagues({search:this.state.searchValue}).then(results=> this.setState({leagues:results}))
     }
 
     onSearchChange(event) {
@@ -62,7 +62,6 @@ class LeaguesPage extends React.Component {
                                 <InputGroup>
                                     <Form.Control
                                         type="text"
-                                        name="search"
                                         placeholder="Search league"
                                         aria-describedby="inputGroupPrepend"
                                         value={this.state.searchValue}

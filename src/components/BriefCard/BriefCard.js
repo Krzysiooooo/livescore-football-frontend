@@ -20,7 +20,7 @@ class BriefCard extends React.Component {
                 <Card.Title>{this.state.league.name}</Card.Title>
                 <Card.Text>
                     From: {this.state.league.country} <br/>
-                    Founded: {this.state.league.founded}
+                    Season: {this.state.league.season}
                 </Card.Text>
                 <Button href={`#/league/${this.state.league.league_id}`} variant="primary">Show details</Button>
             </Card.Body>
