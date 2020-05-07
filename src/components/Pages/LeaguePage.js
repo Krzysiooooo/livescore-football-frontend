@@ -21,7 +21,7 @@ class LeaguePage extends React.Component {
 
     renderTeam(team) {
         return <Col xs="6" sm="4" md="3" lg="2" className="pb-3 text-center">
-            <Link to="/leagues">
+            <Link to={`/team/${team.team_id}`}>
                 <Card className="p-3">
                     <Card.Img variant="top" src={team.logo}/>
                     <Card.Body>
