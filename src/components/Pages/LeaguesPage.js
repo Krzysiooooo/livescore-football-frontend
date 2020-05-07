@@ -20,6 +20,8 @@ class LeaguesPage extends React.Component {
         });
         this.onPageChange = this.onPageChange.bind(this);
         this.renderPaginationItem = this.renderPaginationItem.bind(this);
+        this.search = this.search.bind(this);
+        this.onSearchChange = this.onSearchChange.bind(this);
     }
 
     onPageChange(event) {
@@ -41,7 +43,12 @@ class LeaguesPage extends React.Component {
     }
 
     search() {
+        BackendApi.getLeagues({search:this.state.searchValue});
+    }
 
+    onSearchChange(event) {
+        event.preventDefault();
+        this.setState({searchValue: event.target.value})
     }
 
     render() {
@@ -49,7 +56,7 @@ class LeaguesPage extends React.Component {
             <h2 className="pb-4">Leagues</h2>
             <Row>
                 <Col xs="12">
-                    <Form>
+                    <Form onSubmit={this.search}>
                         <Form.Row>
                             <Form.Group as={Col} md="4">
                                 <InputGroup>
@@ -59,9 +66,10 @@ class LeaguesPage extends React.Component {
                                         placeholder="Search league"
                                         aria-describedby="inputGroupPrepend"
                                         value={this.state.searchValue}
-                                        onChange={this.search}/>
+                                        onChange={this.onSearchChange}/>
                                     <InputGroup.Prepend>
-                                        <InputGroup.Text id="inputGroupPrepend" as={Button}>Search</InputGroup.Text>
+                                        <InputGroup.Text id="inputGroupPrepend" type="submit"
+                                                         as={Button}>Search</InputGroup.Text>
                                     </InputGroup.Prepend>
                                 </InputGroup>
                             </Form.Group>

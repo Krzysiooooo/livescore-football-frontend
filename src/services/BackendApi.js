@@ -16,6 +16,9 @@ const BackendApi = {
         if (query.ids) {
             queryArray.push(`ids=${query.ids.join(",")}`);
         }
+        if (query.search){
+            queryArray.push(`search=${query.search}`);
+        }
         const queryString = queryArray.join("&");
         if (queryString) {
             path += "?" + queryString;
