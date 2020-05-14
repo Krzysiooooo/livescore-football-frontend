@@ -16,7 +16,7 @@ const BackendApi = {
         if (query.ids) {
             queryArray.push(`ids=${query.ids.join(",")}`);
         }
-        if (query.search){
+        if (query.search) {
             queryArray.push(`search=${query.search}`);
         }
         const queryString = queryArray.join("&");
@@ -31,7 +31,6 @@ const BackendApi = {
     getTeams: (leagueId) => {
         return httpRequest(`/league/${leagueId}/teams`, 'GET');
     }
-
 };
 
 export default BackendApi;
