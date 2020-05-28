@@ -9,13 +9,16 @@ class LeaguePage extends React.Component {
 
     constructor(props) {
         super();
-        this.state = {league: {}, teams: []};
+        this.state = {league: {}, teams: [], fixtures: []};
         const leagueId = props.match.params.id;
         BackendApi.getLeague(leagueId).then((league) => {
             this.setState({league: league});
         });
         BackendApi.getTeams(leagueId).then((teams) => {
             this.setState({teams: teams});
+        });
+        BackendApi.getFixturesByLeagueId(leagueId).then((data) => {
+            this.setState({fixtures:data.fixtures});
         });
     }
 
@@ -31,6 +34,20 @@ class LeaguePage extends React.Component {
             </Link>
         </Col>;
     }
+    renderFixture(fixture){
+        return  <div key= {fixture.fixture_id}>
+            <Row>
+                <Col>
+                    <p className="text-center">{fixture.event_date}</p>
+                </Col>
+            </Row>
+            <Row>
+                <Col>{fixture.homeTeam.team_name}</Col>
+                <Col className="text-center">{fixture.score.halftime}</Col>
+                <Col className="text-right">{fixture.awayTeam.team_name}</Col>
+            </Row>
+        </div>;
+    }
 
     render() {
         return <div id="league-page">
@@ -39,6 +56,12 @@ class LeaguePage extends React.Component {
                     <h2>{this.state.league.name}</h2>
                     <p>{this.state.league.country} | {this.state.league.season}</p>
                     <Image src={this.state.league.logo}></Image>
+                </Col>
+            </Row>
+            <Row>
+                <Col>
+                    <h2>Recent events</h2>
+                    {this.state.fixtures.map(this.renderFixture)}
                 </Col>
             </Row>
             <Row className="mt-5">

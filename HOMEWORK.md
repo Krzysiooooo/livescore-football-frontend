@@ -1,2 +1,4 @@
-Create mock input element on leagues page for searching leagues
-Use React Bootstrap element (check forms section)
+1. Zrobić stylowanie eventów na stronie leaguePage
+
+
+5. Przerobienie leaguePage na widok tabelaryczny zawierajacy skumulowane statystki biezacego sezonu 
