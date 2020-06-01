@@ -14,3 +14,23 @@
 #league-page .card .card-body p {
     overflow-wrap: normal;
 }
+
+#league-page .fixture {
+    border-bottom: 3px solid #dadada;
+    margin-bottom: 10px;
+    background: #f4f4f4;
+}
+
+#league-page .fixture .body h3 {
+    margin: 15px;
+    font-size: 20px;
+    margin-top: 35px;
+}
+
+#league-page .fixture .body img {
+    margin: 10px;
+}
+
+#league-page .fixture .body .score {
+    font-size: 25px;
+}

@@ -35,16 +35,22 @@ class LeaguePage extends React.Component {
         </Col>;
     }
     renderFixture(fixture){
-        return  <div key= {fixture.fixture_id}>
-            <Row>
+        return  <div key= {fixture.fixture_id} className="fixture">
+            <Row className="header">
                 <Col>
                     <p className="text-center">{fixture.event_date}</p>
                 </Col>
             </Row>
-            <Row>
-                <Col>{fixture.homeTeam.team_name}</Col>
-                <Col className="text-center">{fixture.score.halftime}</Col>
-                <Col className="text-right">{fixture.awayTeam.team_name}</Col>
+            <Row className="body">
+                <Col>
+                    <Image src={fixture.homeTeam.logo} className="float-left"></Image>
+                    <h3>{fixture.homeTeam.team_name}</h3>
+                </Col>
+                <Col className="text-center score">{fixture.score.halftime}</Col>
+                <Col className="text-right">
+                    <Image src={fixture.awayTeam.logo} className="float-right"></Image>
+                    <h3>{fixture.awayTeam.team_name}</h3>
+                </Col>
             </Row>
         </div>;
     }
