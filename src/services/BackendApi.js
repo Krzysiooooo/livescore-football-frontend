@@ -31,6 +31,9 @@ const BackendApi = {
     getTeams: (leagueId) => {
         return httpRequest(`/league/${leagueId}/teams`, 'GET');
     },
+    getTeamsStatistics: (leagueId) => {
+        return httpRequest(`/league/${leagueId}/teams/stats`, 'GET');
+    },
     getFixturesByLeagueId: (leagueId) => {
         return httpRequest(`/league/${leagueId}/fixtures`, 'GET');
     },

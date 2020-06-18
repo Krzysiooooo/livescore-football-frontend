@@ -4,6 +4,7 @@ import {Row, Col, Image} from "react-bootstrap";
 import Card from "react-bootstrap/Card";
 import './LeaguePage.css';
 import {Link} from "react-router-dom";
+import Table from "react-bootstrap/Table";
 
 class LeaguePage extends React.Component {
 
@@ -23,16 +24,15 @@ class LeaguePage extends React.Component {
     }
 
     renderTeam(team) {
-        return <Col xs="6" sm="4" md="3" lg="2" className="pb-3 text-center" key={team.team_id}>
-            <Link to={`/team/${team.team_id}`}>
-                <Card className="p-3">
-                    <Card.Img variant="top" src={team.logo}/>
-                    <Card.Body>
-                        <p className="pt-2">{team.name}</p>
-                    </Card.Body>
-                </Card>
-            </Link>
-        </Col>;
+        return <tr key={team.team_id}>
+            <td>1</td>
+            <td><Link to={`/team/${team.team_id}`}>{team.name}</Link></td>
+            <td>{team.stats.statistics.matchs.matchsPlayed.total}</td>
+            <td>{team.stats.statistics.matchs.wins.total}</td>
+            <td>{team.stats.statistics.matchs.draws.total}</td>
+            <td>{team.stats.statistics.matchs.loses.total}</td>
+            <td>0</td>
+        </tr>;
     }
     renderFixture(fixture){
         return  <div key= {fixture.fixture_id} className="fixture">
@@ -73,8 +73,23 @@ class LeaguePage extends React.Component {
             <Row className="mt-5">
                 <Col xs="12">
                     <h2>Teams</h2>
+                    <Table>
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Team</th>
+                                <th>Matches</th>
+                                <th>Wins</th>
+                                <th>Draws</th>
+                                <th>Loses</th>
+                                <th>Points</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {this.state.teams.map(this.renderTeam)}
+                        </tbody>
+                    </Table>
                 </Col>
-                {this.state.teams.map(this.renderTeam)}
             </Row>
         </div>
     }
