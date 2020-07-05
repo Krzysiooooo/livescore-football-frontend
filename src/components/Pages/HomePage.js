@@ -10,7 +10,7 @@ class HomePage extends React.Component {
         this.state = {leagues: []};
 
         const query = {
-            ids: ["2", "35", "55", "30"]
+            ids: ["517", "524", "754", "891"]
         };
 
         BackendApi.getLeagues(query).then(data => {
