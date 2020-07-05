@@ -1,7 +1,6 @@
 import React from 'react'
 import BackendApi from "../../services/BackendApi";
 import {Row, Col, Image} from "react-bootstrap";
-import Card from "react-bootstrap/Card";
 import './LeaguePage.css';
 import {Link} from "react-router-dom";
 import Table from "react-bootstrap/Table";
@@ -19,23 +18,24 @@ class LeaguePage extends React.Component {
             this.setState({teams: teams});
         });
         BackendApi.getFixturesByLeagueId(leagueId).then((data) => {
-            this.setState({fixtures:data.fixtures});
+            this.setState({fixtures: data.fixtures});
         });
     }
 
-    renderTeam(team) {
+    renderTeam(team, index) {
         return <tr key={team.team_id}>
-            <td>1</td>
+            <td>{index + 1}</td>
             <td><Link to={`/team/${team.team_id}`}>{team.name}</Link></td>
             <td>{team.stats.statistics.matchs.matchsPlayed.total}</td>
             <td>{team.stats.statistics.matchs.wins.total}</td>
             <td>{team.stats.statistics.matchs.draws.total}</td>
             <td>{team.stats.statistics.matchs.loses.total}</td>
-            <td>0</td>
+            <td>{team.stats.statistics.points}</td>
         </tr>;
     }
-    renderFixture(fixture){
-        return  <div key= {fixture.fixture_id} className="fixture">
+
+    renderFixture(fixture) {
+        return <div key={fixture.fixture_id} className="fixture">
             <Row className="header">
                 <Col>
                     <p className="text-center">{fixture.event_date}</p>
