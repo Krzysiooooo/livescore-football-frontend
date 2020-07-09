@@ -12,7 +12,8 @@ class LeaguesPage extends React.Component {
             leagues: [],
             activePage: 1,
             paginationItems: [1, 2, 3, 4, 5],
-            searchValue: ""
+            searchValue: "",
+            totalLeagues: 0
         };
         this.onPageChange = this.onPageChange.bind(this);
         this.renderPaginationItem = this.renderPaginationItem.bind(this);
@@ -30,7 +31,7 @@ class LeaguesPage extends React.Component {
 
     onReceiveLeagues(result) {
         console.log(result);
-        this.setState({leagues: result.leagues});
+        this.setState({leagues: result.leagues, totalLeagues: result.total});
     }
 
     renderLeague(league) {
@@ -55,6 +56,7 @@ class LeaguesPage extends React.Component {
     render() {
         return (<div>
             <h2 className="pb-4">Leagues</h2>
+
             <Row>
                 <Col xs="12">
                     <Form onSubmit={this.search}>
@@ -75,6 +77,11 @@ class LeaguesPage extends React.Component {
                             </Form.Group>
                         </Form.Row>
                     </Form>
+                </Col>
+            </Row>
+            <Row>
+                <Col>
+                    <p>Results count: {this.state.totalLeagues}</p>
                 </Col>
             </Row>
             <Row>
