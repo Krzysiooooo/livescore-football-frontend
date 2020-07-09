@@ -14,22 +14,23 @@ class LeaguesPage extends React.Component {
             paginationItems: [1, 2, 3, 4, 5],
             searchValue: ""
         };
-
-        BackendApi.getLeagues().then((leagues) => {
-            this.setState({leagues: leagues});
-        });
         this.onPageChange = this.onPageChange.bind(this);
         this.renderPaginationItem = this.renderPaginationItem.bind(this);
         this.search = this.search.bind(this);
         this.onSearchChange = this.onSearchChange.bind(this);
+        this.onReceiveLeagues = this.onReceiveLeagues.bind(this);
+        BackendApi.getLeagues().then(this.onReceiveLeagues);
     }
 
     onPageChange(event) {
         const page = parseInt(event.target.innerText);
         this.setState({activePage: page});
-        BackendApi.getLeagues({page: page}).then((leagues) => {
-            this.setState({leagues: leagues});
-        });
+        BackendApi.getLeagues({page: page}).then(this.onReceiveLeagues);
+    }
+
+    onReceiveLeagues(result) {
+        console.log(result);
+        this.setState({leagues: result.leagues});
     }
 
     renderLeague(league) {
@@ -43,7 +44,7 @@ class LeaguesPage extends React.Component {
     }
 
     search() {
-        BackendApi.getLeagues({search:this.state.searchValue}).then(results=> this.setState({leagues:results}))
+        BackendApi.getLeagues({search: this.state.searchValue}).then(this.onReceiveLeagues);
     }
 
     onSearchChange(event) {
