@@ -14,7 +14,7 @@ class HomePage extends React.Component {
         };
 
         BackendApi.getLeagues(query).then(data => {
-            this.setState({leagues: data})
+            this.setState({leagues: data.leagues})
         });
     }
 

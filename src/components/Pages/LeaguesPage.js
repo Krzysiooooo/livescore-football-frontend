@@ -11,7 +11,7 @@ class LeaguesPage extends React.Component {
         this.state = {
             leagues: [],
             activePage: 1,
-            paginationItems: [1, 2, 3, 4, 5],
+            paginationItems: [],
             searchValue: "",
             totalLeagues: 0
         };
@@ -29,9 +29,27 @@ class LeaguesPage extends React.Component {
         BackendApi.getLeagues({page: page}).then(this.onReceiveLeagues);
     }
 
+    getPaginationArray(activePage, pageCount) {
+        const paginationSize = 10;
+        const halfPaginationSize = paginationSize / 2;
+        let pageStart = activePage - halfPaginationSize;
+        let pageEnd = activePage + halfPaginationSize;
+        if (pageStart < 1) {
+            pageStart = 1;
+            pageEnd = Math.min(10, pageCount);
+        }
+        if (pageEnd > pageCount) {
+            pageEnd = pageCount;
+            pageStart = pageCount - 10 > 0 ? pageCount - 10 : 1;
+        }
+        const itemsCount = pageEnd - pageStart;
+        const paginationItems = Array.from((new Array(itemsCount)).keys()).map(i => i + pageStart);
+        return paginationItems;
+    }
+
     onReceiveLeagues(result) {
-        console.log(result);
-        this.setState({leagues: result.leagues, totalLeagues: result.total});
+        const paginationItems  = this.getPaginationArray(this.state.activePage, result.pageCount);
+        this.setState({leagues: result.leagues, totalLeagues: result.total, paginationItems: paginationItems});
     }
 
     renderLeague(league) {
