@@ -1,6 +1,6 @@
 import React from 'react'
 import BackendApi from "../../services/BackendApi";
-import {Row, Col, Image} from "react-bootstrap";
+import {Row, Col, Image, Tabs, Tab} from "react-bootstrap";
 import './LeaguePage.css';
 import {Link} from "react-router-dom";
 import Table from "react-bootstrap/Table";
@@ -57,22 +57,17 @@ class LeaguePage extends React.Component {
 
     render() {
         return <div id="league-page">
-            <Row>
+            <Row className="header">
                 <Col>
-                    <h2>{this.state.league.name}</h2>
-                    <p>{this.state.league.country} | {this.state.league.season}</p>
                     <Image src={this.state.league.logo}></Image>
+                    <div>
+                        <h2>{this.state.league.name}</h2>
+                        <p>{this.state.league.country}  <span className="text-muted">{this.state.league.season}</span></p>
+                    </div>
                 </Col>
             </Row>
-            <Row>
-                <Col>
-                    <h2>Recent events</h2>
-                    {this.state.fixtures.map(this.renderFixture)}
-                </Col>
-            </Row>
-            <Row className="mt-5">
-                <Col xs="12">
-                    <h2>Teams</h2>
+            <Tabs defaultActiveKey="table">
+                <Tab eventKey="table" title="Table">
                     <Table>
                         <thead>
                             <tr>
@@ -89,8 +84,12 @@ class LeaguePage extends React.Component {
                             {this.state.teams.map(this.renderTeam)}
                         </tbody>
                     </Table>
-                </Col>
-            </Row>
+                </Tab>
+                <Tab eventKey="matches" title="Matches">
+                    <h2>Recent events</h2>
+                    {this.state.fixtures.map(this.renderFixture)}
+                </Tab>
+            </Tabs>
         </div>
     }
 }
