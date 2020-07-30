@@ -36,10 +36,10 @@ class LeaguesPage extends React.Component {
         let pageEnd = activePage + halfPaginationSize;
         if (pageStart < 1) {
             pageStart = 1;
-            pageEnd = Math.min(10, pageCount);
+            pageEnd = Math.min(10, pageCount + 1);
         }
         if (pageEnd > pageCount) {
-            pageEnd = pageCount;
+            pageEnd = pageCount + 1;
             pageStart = pageCount - 10 > 0 ? pageCount - 10 : 1;
         }
         const itemsCount = pageEnd - pageStart;
@@ -48,7 +48,7 @@ class LeaguesPage extends React.Component {
     }
 
     onReceiveLeagues(result) {
-        const paginationItems  = this.getPaginationArray(this.state.activePage, result.pageCount);
+        const paginationItems = this.getPaginationArray(this.state.activePage, result.pageCount);
         this.setState({leagues: result.leagues, totalLeagues: result.total, paginationItems: paginationItems});
     }
 
@@ -63,7 +63,10 @@ class LeaguesPage extends React.Component {
     }
 
     search() {
-        BackendApi.getLeagues({search: this.state.searchValue}).then(this.onReceiveLeagues);
+        BackendApi.getLeagues({search: this.state.searchValue}).then((result) => {
+            this.setState({activePage: 1});
+            this.onReceiveLeagues(result);
+        });
     }
 
     onSearchChange(event) {
