@@ -36,17 +36,15 @@ class LeaguePage extends React.Component {
 
     renderFixture(fixture) {
         return <div key={fixture.fixture_id} className="fixture">
-            <Row className="header">
-                <Col>
-                    <p className="text-center">{fixture.event_date}</p>
-                </Col>
-            </Row>
             <Row className="body">
                 <Col>
                     <Image src={fixture.homeTeam.logo} className="float-left"></Image>
                     <h3>{fixture.homeTeam.team_name}</h3>
                 </Col>
-                <Col className="text-center score">{fixture.goalsHomeTeam} : {fixture.goalsAwayTeam}</Col>
+                <Col className="text-center score">
+                    <h3>{fixture.goalsHomeTeam} : {fixture.goalsAwayTeam}</h3>
+                    <span style={({fontSize:"10px"})}>{fixture.event_date}</span>
+                </Col>
                 <Col className="text-right">
                     <Image src={fixture.awayTeam.logo} className="float-right"></Image>
                     <h3>{fixture.awayTeam.team_name}</h3>
@@ -87,7 +85,11 @@ class LeaguePage extends React.Component {
                 </Tab>
                 <Tab eventKey="matches" title="Matches">
                     <h2>Recent events</h2>
-                    {this.state.fixtures.map(this.renderFixture)}
+                    <Row>
+                        <Col xs="12">
+                            {this.state.fixtures.map(this.renderFixture)}
+                        </Col>
+                    </Row>
                 </Tab>
             </Tabs>
         </div>

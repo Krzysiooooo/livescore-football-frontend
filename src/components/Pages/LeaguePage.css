@@ -16,27 +16,22 @@
 }
 
 #league-page .fixture {
-    border-bottom: 3px solid #dadada;
+    /*border-bottom: 3px solid #dadada;*/
     margin-bottom: 10px;
-    background: #f4f4f4;
+    /*background: #fafafa;*/
 }
 
 #league-page .fixture .body h3 {
     margin: 15px;
     font-size: 20px;
-    margin-top: 35px;
 }
 
 #league-page .fixture .body img {
     margin: 10px;
 }
 
-#league-page .fixture .body .score {
-    font-size: 25px;
-}
-
 #league-page .header {
-    margin-bottom: 12px;
+    margin-bottom: 2px;
 }
 
 #league-page .header img {
@@ -53,8 +48,8 @@
     font-size: 2.5rem;
 }
 
-#league-page .fixture{
-    height: 120px;
+#league-page .fixture h3{
+    margin: 0px;
 }
 
 #league-page .fixture img {

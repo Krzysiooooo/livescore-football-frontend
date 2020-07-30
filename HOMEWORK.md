@@ -1,1 +1,0 @@
-bugfix wyszukiwarka nie nie robi przy 1 wyszukaniu, wywraca aplikacje przy probie drugiego wyszukania 
