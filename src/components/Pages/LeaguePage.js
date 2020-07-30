@@ -46,7 +46,7 @@ class LeaguePage extends React.Component {
                     <Image src={fixture.homeTeam.logo} className="float-left"></Image>
                     <h3>{fixture.homeTeam.team_name}</h3>
                 </Col>
-                <Col className="text-center score">{fixture.score.fulltime}</Col>
+                <Col className="text-center score">{fixture.goalsHomeTeam} : {fixture.goalsAwayTeam}</Col>
                 <Col className="text-right">
                     <Image src={fixture.awayTeam.logo} className="float-right"></Image>
                     <h3>{fixture.awayTeam.team_name}</h3>

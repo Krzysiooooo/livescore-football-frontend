@@ -52,3 +52,11 @@
 #league-page .header > div h2{
     font-size: 2.5rem;
 }
+
+#league-page .fixture{
+    height: 120px;
+}
+
+#league-page .fixture img {
+    height: 50px;
+}
