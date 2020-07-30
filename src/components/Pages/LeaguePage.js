@@ -18,7 +18,8 @@ class LeaguePage extends React.Component {
             this.setState({teams: teams});
         });
         BackendApi.getFixturesByLeagueId(leagueId).then((data) => {
-            this.setState({fixtures: data.fixtures});
+            this.setState({fixtures: data.nextFixtures.concat(data.lastFixtures)});
+            console.log(this.state.fixtures);
         });
     }
 
@@ -86,7 +87,7 @@ class LeaguePage extends React.Component {
                 <Tab eventKey="matches" title="Matches">
                     <h2>Recent events</h2>
                     <Row>
-                        <Col xs="12">
+                        <Col>
                             {this.state.fixtures.map(this.renderFixture)}
                         </Col>
                     </Row>
