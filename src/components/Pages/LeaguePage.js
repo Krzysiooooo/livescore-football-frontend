@@ -12,28 +12,17 @@ class LeaguePage extends React.Component {
     constructor(props) {
         super();
         this.renderGroupedFixture = this.renderGroupedFixture.bind(this);
-        const date1 = "2020-08-01T16:00:00+00:00";
-        const date2 = new Date(date1);
-        console.log(date1, date2);
-        console.log(moment(date2).format('LL'));
         this.state = {league: {}, teams: [], fixtures: {}, fixturesKeys: []};
         const leagueId = props.match.params.id;
-        BackendApi.getLeague(leagueId).then((league) => {
-            this.setState({league: league});
-        });
-        BackendApi.getTeams(leagueId).then((teams) => {
-            this.setState({teams: teams});
-        });
+        BackendApi.getLeague(leagueId).then(league => this.setState({league: league}));
+        BackendApi.getTeams(leagueId).then(teams => this.setState({teams: teams}));
         BackendApi.getFixturesByLeagueId(leagueId).then((data) => {
             const fixtures = _.reverse(data.nextFixtures).concat(data.lastFixtures).map((fixture) => {
                 fixture.niceDate = moment(fixture.event_date).format('LL');
+                fixture.humanDate = moment(fixture.event_date).from();
                 return fixture;
             });
-            const groupedFixtures = _.groupBy(fixtures, (fixture) => {
-                return fixture.niceDate
-            });
-            console.log(groupedFixtures);
-            console.log(data);
+            const groupedFixtures = _.groupBy(fixtures, fixture => fixture.niceDate);
             const fixturesKeys = _.keys(groupedFixtures);
             this.setState({fixtures: groupedFixtures, fixturesKeys: fixturesKeys});
         });
@@ -60,6 +49,7 @@ class LeaguePage extends React.Component {
                 </Col>
                 <Col className="text-center score">
                     <h3>{fixture.goalsHomeTeam} : {fixture.goalsAwayTeam}</h3>
+                    <span>{fixture.humanDate}</span>
                 </Col>
                 <Col className="text-right">
                     <Image src={fixture.awayTeam.logo} className="float-right"></Image>
