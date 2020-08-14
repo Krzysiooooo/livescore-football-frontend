@@ -4,12 +4,19 @@ import {Row, Col, Image, Tabs, Tab} from "react-bootstrap";
 import './LeaguePage.css';
 import {Link} from "react-router-dom";
 import Table from "react-bootstrap/Table";
+import moment from "moment";
+import _ from "lodash";
 
 class LeaguePage extends React.Component {
 
     constructor(props) {
         super();
-        this.state = {league: {}, teams: [], fixtures: []};
+        this.renderGroupedFixture = this.renderGroupedFixture.bind(this);
+        const date1 = "2020-08-01T16:00:00+00:00";
+        const date2 = new Date(date1);
+        console.log(date1, date2);
+        console.log(moment(date2).format('LL'));
+        this.state = {league: {}, teams: [], fixtures: {}, fixturesKeys: []};
         const leagueId = props.match.params.id;
         BackendApi.getLeague(leagueId).then((league) => {
             this.setState({league: league});
@@ -18,8 +25,17 @@ class LeaguePage extends React.Component {
             this.setState({teams: teams});
         });
         BackendApi.getFixturesByLeagueId(leagueId).then((data) => {
-            this.setState({fixtures: data.nextFixtures.concat(data.lastFixtures)});
-            console.log(this.state.fixtures);
+            const fixtures = _.reverse(data.nextFixtures).concat(data.lastFixtures).map((fixture) => {
+                fixture.niceDate = moment(fixture.event_date).format('LL');
+                return fixture;
+            });
+            const groupedFixtures = _.groupBy(fixtures, (fixture) => {
+                return fixture.niceDate
+            });
+            console.log(groupedFixtures);
+            console.log(data);
+            const fixturesKeys = _.keys(groupedFixtures);
+            this.setState({fixtures: groupedFixtures, fixturesKeys: fixturesKeys});
         });
     }
 
@@ -44,13 +60,19 @@ class LeaguePage extends React.Component {
                 </Col>
                 <Col className="text-center score">
                     <h3>{fixture.goalsHomeTeam} : {fixture.goalsAwayTeam}</h3>
-                    <span style={({fontSize:"10px"})}>{fixture.event_date}</span>
                 </Col>
                 <Col className="text-right">
                     <Image src={fixture.awayTeam.logo} className="float-right"></Image>
                     <h3>{fixture.awayTeam.team_name}</h3>
                 </Col>
             </Row>
+        </div>;
+    }
+
+    renderGroupedFixture(key) {
+        return <div key={key}>
+            <h3 className="group-date">{key}</h3>
+            {this.state.fixtures[key].map(this.renderFixture)}
         </div>;
     }
 
@@ -61,7 +83,8 @@ class LeaguePage extends React.Component {
                     <Image src={this.state.league.logo}></Image>
                     <div>
                         <h2>{this.state.league.name}</h2>
-                        <p>{this.state.league.country}  <span className="text-muted">{this.state.league.season}</span></p>
+                        <p>{this.state.league.country} <span className="text-muted">{this.state.league.season}</span>
+                        </p>
                     </div>
                 </Col>
             </Row>
@@ -85,12 +108,7 @@ class LeaguePage extends React.Component {
                     </Table>
                 </Tab>
                 <Tab eventKey="matches" title="Matches">
-                    <h2>Recent events</h2>
-                    <Row>
-                        <Col>
-                            {this.state.fixtures.map(this.renderFixture)}
-                        </Col>
-                    </Row>
+                    {this.state.fixturesKeys.map(this.renderGroupedFixture)}
                 </Tab>
             </Tabs>
         </div>
