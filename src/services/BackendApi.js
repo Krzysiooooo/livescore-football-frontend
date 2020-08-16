@@ -39,6 +39,9 @@ const BackendApi = {
     },
     getTeam: (teamId) => {
         return httpRequest(`/team/${teamId}`, 'GET');
+    },
+    getLiveFixtures: () => {
+        return httpRequest(`/fixtures/live`, 'GET');
     }
 };
 
