@@ -6,6 +6,7 @@ import {Link} from "react-router-dom";
 import Table from "react-bootstrap/Table";
 import moment from "moment";
 import _ from "lodash";
+import InlineFixture from "../InlineFixture/InlineFixture";
 
 class LeaguePage extends React.Component {
 
@@ -19,7 +20,6 @@ class LeaguePage extends React.Component {
         BackendApi.getFixturesByLeagueId(leagueId).then((data) => {
             const fixtures = _.reverse(data.nextFixtures).concat(data.lastFixtures).map((fixture) => {
                 fixture.niceDate = moment(fixture.event_date).format('LL');
-                fixture.humanDate = moment(fixture.event_date).from();
                 return fixture;
             });
             const groupedFixtures = _.groupBy(fixtures, fixture => fixture.niceDate);
@@ -40,29 +40,10 @@ class LeaguePage extends React.Component {
         </tr>;
     }
 
-    renderFixture(fixture) {
-        return <div key={fixture.fixture_id} className="fixture">
-            <Row className="body">
-                <Col>
-                    <Image src={fixture.homeTeam.logo} className="float-left"></Image>
-                    <h3>{fixture.homeTeam.team_name}</h3>
-                </Col>
-                <Col className="text-center score">
-                    <h3>{fixture.goalsHomeTeam} : {fixture.goalsAwayTeam}</h3>
-                    <span>{fixture.humanDate}</span>
-                </Col>
-                <Col className="text-right">
-                    <Image src={fixture.awayTeam.logo} className="float-right"></Image>
-                    <h3>{fixture.awayTeam.team_name}</h3>
-                </Col>
-            </Row>
-        </div>;
-    }
-
     renderGroupedFixture(key) {
         return <div key={key}>
             <h3 className="group-date">{key}</h3>
-            {this.state.fixtures[key].map(this.renderFixture)}
+            {this.state.fixtures[key].map(fixture => <InlineFixture fixture={fixture} key={fixture.fixture_id}></InlineFixture>)}
         </div>;
     }
 

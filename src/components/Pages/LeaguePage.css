@@ -15,21 +15,6 @@
     overflow-wrap: normal;
 }
 
-#league-page .fixture {
-    /*border-bottom: 3px solid #dadada;*/
-    margin-bottom: 10px;
-    /*background: #fafafa;*/
-}
-
-#league-page .fixture .body h3 {
-    margin: 15px;
-    font-size: 15px;
-}
-
-#league-page .fixture .body img {
-    margin: 10px;
-}
-
 #league-page .header {
     margin-bottom: 2px;
 }
@@ -48,9 +33,7 @@
     font-size: 2rem;
 }
 
-#league-page .fixture img {
-    height: 40px;
-}
+
 
 #league-page .group-date {
     font-size: 15px;
