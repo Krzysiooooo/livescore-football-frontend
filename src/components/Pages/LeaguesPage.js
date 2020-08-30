@@ -53,7 +53,7 @@ class LeaguesPage extends React.Component {
     }
 
     renderLeague(league) {
-        return <Col xs={3} className="mb-4" key={league.league_id}><BriefCard key={league.league_id}
+        return <Col  xs={12} sm={6} lg={3} className="mb-4" key={league.league_id}><BriefCard key={league.league_id}
                                                                               data-league={league}></BriefCard></Col>
     }
 
