@@ -66,11 +66,16 @@ class LeaguePage extends React.Component {
                             <tr>
                                 <th>#</th>
                                 <th>Team</th>
-                                <th>Matches</th>
-                                <th>Wins</th>
-                                <th>Draws</th>
-                                <th>Loses</th>
-                                <th>Points</th>
+                                <th className="d-none d-sm-table-cell">Matches</th>
+                                <th className="d-sm-none">M</th>
+                                <th className="d-none d-sm-table-cell">Wins</th>
+                                <th className="d-sm-none">W</th>
+                                <th className="d-none d-sm-table-cell">Draws</th>
+                                <th className="d-sm-none">D</th>
+                                <th className="d-none d-sm-table-cell">Loses</th>
+                                <th className="d-sm-none">L</th>
+                                <th className="d-none d-sm-table-cell">Points</th>
+                                <th className="d-sm-none">Pts</th>
                             </tr>
                         </thead>
                         <tbody>
