@@ -3,6 +3,7 @@ import Button from "react-bootstrap/Button";
 import React from "react";
 import './BriefCard.css'
 import {Image} from "react-bootstrap";
+import {Link} from "react-router-dom";
 
 class BriefCard extends React.Component {
 
@@ -11,8 +12,13 @@ class BriefCard extends React.Component {
         this.state = {league: props['data-league']};
     }
 
+    selectLeague(){
+        return console.log("clicked");
+    }
+
     render() {
-        return <Card className="brief-card">
+        return <Link to={`/league/${this.state.league.league_id}`} className="brief-card-link">
+        <Card className="brief-card">
             <Card.Body>
                 <div className="image">
                     <Image src={this.state.league.logo}></Image>
@@ -22,10 +28,9 @@ class BriefCard extends React.Component {
                     From: {this.state.league.country} <br/>
                     Season: {this.state.league.season}
                 </Card.Text>
-                <Button href={`#/league/${this.state.league.league_id}`} variant="primary">Show details</Button>
             </Card.Body>
         </Card>
-
+        </Link>
     }
 }
 

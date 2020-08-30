@@ -10,3 +10,18 @@
     max-height: 150px;
     max-width: 100%;
 }
+
+.brief-card.card {
+    min-height: 310px;
+}
+.brief-card-link{
+    color: #212529
+}
+
+.brief-card-link:hover  {
+    text-decoration: none;
+    color: #212529;
+}
+.brief-card-link:hover .brief-card.card {
+    background-color: #eeeeee;
+}
