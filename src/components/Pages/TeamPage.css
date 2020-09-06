@@ -1,3 +1,6 @@
 #team-page .team-logo {
     max-width:100%;
 }
+#team-page .player{
+    margin: 20px;
+}

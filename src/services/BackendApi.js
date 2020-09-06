@@ -43,6 +43,9 @@ const BackendApi = {
     getTeamTransfers: (teamId) => {
         return httpRequest(`/team/${teamId}/transfers`, 'GET');
     },
+    getTeamsSquad: (teamId) => {
+        return httpRequest(`/team/${teamId}/squad`, 'GET');
+    },
     getLiveFixtures: () => {
         return httpRequest(`/fixtures/live`, 'GET');
     }
