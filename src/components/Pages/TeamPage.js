@@ -2,12 +2,13 @@ import React from 'react'
 import BackendApi from "../../services/BackendApi";
 import {Col, Tab, Tabs, Image, Row} from "react-bootstrap";
 import './TeamPage.css';
+import Table from "react-bootstrap/Table";
 
 class TeamPage extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = {team: {}, transfersData: {transfers: []}, squadData: {players: []}};
+        this.state = {team: {}, transfersData: {transfers: []}, squad: {players: []}};
         const teamId = props.match.params.id;
         BackendApi.getTeam(teamId).then((team) => {
             this.setState({team: team});
@@ -26,18 +27,12 @@ class TeamPage extends React.Component {
             joined {transfer.team_in.team_name}</p>
     }
 
-    renderSquad(squad) {
-        return <Row className="player">
-            <Col>
-                {squad.player_name}
-            </Col>
-            <Col>
-                {squad.nationality}
-            </Col>
-            <Col>
-                {squad.position}
-            </Col>
-        </Row>
+    renderSquad(player) {
+        return <tr key={player.player_id}>
+            <td>{player.player_name}</td>
+            <td>{player.nationality}</td>
+            <td>{player.position}</td>
+        </tr>
     }
 
     render() {
@@ -58,12 +53,18 @@ class TeamPage extends React.Component {
                             {this.state.transfersData.transfers.map(this.renderTransfer)}
                         </Tab>
                         <Tab eventKey="squad" title="Squad">
-                           <Row>
-                               <Col><h3>Player name</h3></Col>
-                               <Col><h3>Nationality</h3></Col>
-                               <Col><h3>Position</h3></Col>
-                           </Row>
-                            {this.state.squadData.players.map(this.renderSquad)}
+                            <Table>
+                                <thead>
+                                    <tr>
+                                        <th>Player Name</th>
+                                        <th>Nationality</th>
+                                        <th>Position</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {this.state.squad.players.map(this.renderSquad)}
+                                </tbody>
+                            </Table>
                         </Tab>
                     </Tabs>
                 </Col>

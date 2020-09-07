@@ -1,5 +1,4 @@
 import React from 'react'
-import { Col, Image, Row} from "react-bootstrap";
 import BackendApi from "../../services/BackendApi";
 import InlineFixture from "../InlineFixture/InlineFixture";
 
