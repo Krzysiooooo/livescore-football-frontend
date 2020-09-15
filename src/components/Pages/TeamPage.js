@@ -22,8 +22,7 @@ class TeamPage extends React.Component {
     }
 
     renderTransfer(transfer) {
-        return <p><span
-            className="text-muted">{transfer.transfer_date}</span> {transfer.player_name} left {transfer.team_out.team_name} and
+        return <p key={transfer.player_id}><span className="text-muted">{transfer.transfer_date}</span> {transfer.player_name} left {transfer.team_out.team_name} and
             joined {transfer.team_in.team_name}</p>
     }
 
