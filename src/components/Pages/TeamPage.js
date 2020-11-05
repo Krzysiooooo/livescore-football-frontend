@@ -17,16 +17,17 @@ class TeamPage extends React.Component {
             this.setState({transfersData: transfers});
         });
         BackendApi.getTeamsSquad(teamId).then((squad) => {
-            this.setState({squadData: squad});
+            this.setState({squad: squad});
         });
     }
 
-    renderTransfer(transfer) {
-        return <p key={transfer.player_id}><span className="text-muted">{transfer.transfer_date}</span> {transfer.player_name} left {transfer.team_out.team_name} and
+    renderTransfer(transfer, i) {
+        return <p key={i}><span className="text-muted">{transfer.transfer_date}</span> {transfer.player_name} left {transfer.team_out.team_name} and
             joined {transfer.team_in.team_name}</p>
     }
 
     renderSquad(player) {
+        console.log(player);
         return <tr key={player.player_id}>
             <td>{player.player_name}</td>
             <td>{player.nationality}</td>

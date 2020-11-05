@@ -1,5 +1,4 @@
 import Card from "react-bootstrap/Card";
-import Button from "react-bootstrap/Button";
 import React from "react";
 import './BriefCard.css'
 import {Image} from "react-bootstrap";
