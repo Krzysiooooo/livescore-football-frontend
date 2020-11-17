@@ -39,6 +39,10 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 
 ## Docker image
 
+First run javascript react build to execute tasks like minification and concatenation of the source codes
+```
+npm run build
+```
 In order to build docker image run following command:
 ```
 docker build -t livescore-football-frontend:1 .
