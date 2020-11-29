@@ -45,9 +45,9 @@ npm run build
 ```
 In order to build docker image run following command:
 ```
-docker build -t livescore-football-frontend:1 .
+docker build -t krzysioooo/livescore-football-frontend:1 .
 ```
 To run the image execute following command:
 ```
-docker run -p 80:80 livescore-football-frontend:1
+docker run -p 80:80 krzysioooo/livescore-football-frontend:1
 ```
