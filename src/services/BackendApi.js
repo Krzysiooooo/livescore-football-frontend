@@ -1,6 +1,8 @@
-const API_ADDRESS = "http://localhost:4000";
-
 function httpRequest(path, method) {
+    let API_ADDRESS = "http://localhost:4000";
+    if (window.location.origin === 'http://ec2co-ecsel-14q0z6yreq0yn-1985279788.us-east-2.elb.amazonaws.com') {
+        API_ADDRESS = "http://ec2co-ecsel-14q0z6yreq0yn-1985279788.us-east-2.elb.amazonaws.com:4000";
+    }
     const url = API_ADDRESS + path;
     const config = {method: method};
     return fetch(url, config).then(data => data.json());
