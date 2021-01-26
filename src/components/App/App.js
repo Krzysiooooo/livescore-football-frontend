@@ -11,7 +11,7 @@ function App() {
         <div>
             <Navbar bg="light" expand="lg">
                 <Container>
-                    <Navbar.Brand href="#/">Livescore Football</Navbar.Brand>
+                    <Navbar.Brand href="#/"><img src="Logo Lf.png" className="logo" />Livescore Football</Navbar.Brand>
                     <Navbar.Toggle aria-controls="basic-navbar-nav"/>
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="mr-auto">
