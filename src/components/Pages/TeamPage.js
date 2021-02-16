@@ -8,7 +8,7 @@ class TeamPage extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = {team: {}, transfersData: {transfers: []}, squad: {players: []}};
+        this.state = {team: {}, transfersData: {transfers: []}, squad: []};
         const teamId = props.match.params.id;
         BackendApi.getTeam(teamId).then((team) => {
             this.setState({team: team});
@@ -27,11 +27,10 @@ class TeamPage extends React.Component {
     }
 
     renderSquad(player) {
-        console.log(player);
-        return <tr key={player.player_id}>
-            <td>{player.player_name}</td>
-            <td>{player.nationality}</td>
-            <td>{player.position}</td>
+        return <tr key={player.player.id}>
+            <td>{player.player.name}</td>
+            <td>{player.player.nationality}</td>
+            <td>{player.statistics[0].games.position}</td>
         </tr>
     }
 
@@ -62,7 +61,7 @@ class TeamPage extends React.Component {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {this.state.squad.players.map(this.renderSquad)}
+                                    {this.state.squad.map(this.renderSquad)}
                                 </tbody>
                             </Table>
                         </Tab>
