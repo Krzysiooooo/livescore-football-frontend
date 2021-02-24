@@ -19,7 +19,7 @@ class LeaguePage extends React.Component {
         BackendApi.getTeams(leagueId).then(teams => this.setState({teams: teams}));
         BackendApi.getFixturesByLeagueId(leagueId).then((data) => {
             const fixtures = _.reverse(data.nextFixtures).concat(data.lastFixtures).map((fixture) => {
-                fixture.niceDate = moment(fixture.event_date).format('LL');
+                fixture.niceDate = moment(fixture.fixture.date).format('LL');
                 return fixture;
             });
             const groupedFixtures = _.groupBy(fixtures, fixture => fixture.niceDate);
@@ -43,7 +43,7 @@ class LeaguePage extends React.Component {
     renderGroupedFixture(key) {
         return <div key={key}>
             <h3 className="group-date">{key}</h3>
-            {this.state.fixtures[key].map(fixture => <InlineFixture fixture={fixture} key={fixture.fixture_id}></InlineFixture>)}
+            {this.state.fixtures[key].map(fixture => <InlineFixture fixture={fixture} key={fixture.fixture.id}></InlineFixture>)}
         </div>;
     }
 
