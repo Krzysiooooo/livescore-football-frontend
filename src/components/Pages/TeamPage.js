@@ -8,10 +8,11 @@ class TeamPage extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = {team: {}, transfersData: {transfers: []}, squad: []};
+        this.state = {venue: {}, team: {}, transfersData: {transfers: []}, squad: []};
         const teamId = props.match.params.id;
         BackendApi.getTeam(teamId).then((team) => {
-            this.setState({team: team});
+            this.setState({team: team.team});
+            this.setState({venue: team.venue});
         });
         BackendApi.getTeamTransfers(teamId).then((transfers) => {
             this.setState({transfersData: transfers});
@@ -22,7 +23,8 @@ class TeamPage extends React.Component {
     }
 
     renderTransfer(transfer, i) {
-        return <p key={i}><span className="text-muted">{transfer.transfer_date}</span> {transfer.player_name} left {transfer.team_out.team_name} and
+        return <p key={i}><span
+            className="text-muted">{transfer.transfer_date}</span> {transfer.player_name} left {transfer.team_out.team_name} and
             joined {transfer.team_in.team_name}</p>
     }
 
@@ -39,7 +41,7 @@ class TeamPage extends React.Component {
             <Row>
                 <Col>
                     <h1>{this.state.team.name}</h1>
-                    <p>Since: {this.state.team.founded} <br/>{this.state.team.country}, {this.state.team.venue_city}</p>
+                    <p>Since: {this.state.team.founded} <br/>{this.state.team.country}, {this.state.venue.city}</p>
                 </Col>
                 <Col>
                     <Image src={this.state.team.logo} className="team-logo"></Image>
