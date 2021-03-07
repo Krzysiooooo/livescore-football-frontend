@@ -20,6 +20,9 @@ class LeaguesPage extends React.Component {
         this.search = this.search.bind(this);
         this.onSearchChange = this.onSearchChange.bind(this);
         this.onReceiveLeagues = this.onReceiveLeagues.bind(this);
+    }
+
+    componentDidMount() {
         BackendApi.getLeagues().then(this.onReceiveLeagues);
     }
 
