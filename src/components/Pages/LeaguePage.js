@@ -15,7 +15,11 @@ class LeaguePage extends React.Component {
         this.renderGroupedFixture = this.renderGroupedFixture.bind(this);
         this.state = {league: {}, teams: [], fixtures: {}, fixturesKeys: []};
         const leagueId = props.match.params.id;
-        BackendApi.getLeague(leagueId).then(league => this.setState({league: league}));
+        BackendApi.getLeague(leagueId).then(league => {
+            const currentSeason = _.find(league.seasons, {'current':true});
+            league.currentSeason = _.pick(currentSeason, ['year','start','end']);
+            this.setState({league: league})
+        });
         BackendApi.getTeams(leagueId).then(teams => this.setState({teams: teams}));
         BackendApi.getFixturesByLeagueId(leagueId).then((data) => {
             const fixtures = _.reverse(data.nextFixtures).concat(data.lastFixtures).map((fixture) => {
@@ -43,18 +47,23 @@ class LeaguePage extends React.Component {
     renderGroupedFixture(key) {
         return <div key={key}>
             <h3 className="group-date">{key}</h3>
-            {this.state.fixtures[key].map(fixture => <InlineFixture fixture={fixture} key={fixture.fixture.id}></InlineFixture>)}
+            {this.state.fixtures[key].map(fixture => <InlineFixture fixture={fixture}
+                                                                    key={fixture.fixture.id}></InlineFixture>)}
         </div>;
     }
 
     render() {
+        if (_.isEmpty(this.state.league)){
+            return <p>Loading data</p>;
+        }
         return <div id="league-page">
             <Row className="header">
                 <Col>
-                    <Image src={this.state.league.logo}></Image>
+                    <Image src={this.state.league.league.logo}></Image>
                     <div>
-                        <h2>{this.state.league.name}</h2>
-                        <p>{this.state.league.country} <span className="text-muted">{this.state.league.season}</span>
+                        <h2>{this.state.league.league.name}</h2>
+                        <p>{this.state.league.country.name} <span
+                            className="text-muted">{this.state.league.currentSeason.year}</span>
                         </p>
                     </div>
                 </Col>
