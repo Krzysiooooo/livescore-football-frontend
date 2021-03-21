@@ -3,6 +3,7 @@ import BackendApi from "../../services/BackendApi";
 import BriefCard from "../BriefCard/BriefCard";
 import {Col, Row, Pagination, Form, InputGroup, Button} from "react-bootstrap";
 
+
 class LeaguesPage extends React.Component {
     items = [];
 
@@ -56,8 +57,9 @@ class LeaguesPage extends React.Component {
     }
 
     renderLeague(league) {
-        return <Col  xs={12} sm={6} lg={3} className="mb-4" key={league.league_id}><BriefCard key={league.league_id}
-                                                                              data-league={league}></BriefCard></Col>
+        return <Col xs={12} sm={6} lg={3} className="mb-4" key={league.league.id}>
+            <BriefCard key={league.league.id} data-league={league}></BriefCard>
+        </Col>
     }
 
     renderPaginationItem(i) {
