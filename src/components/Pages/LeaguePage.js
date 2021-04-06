@@ -33,13 +33,13 @@ class LeaguePage extends React.Component {
     }
 
     renderTeam(team, index) {
-        return <tr key={team.team_id}>
+        return <tr key={team.team.id}>
             <td>{index + 1}</td>
-            <td><Link to={`/team/${team.team_id}`}>{team.name}</Link></td>
-            <td>{team.stats.statistics.matchs.matchsPlayed.total}</td>
-            <td>{team.stats.statistics.matchs.wins.total}</td>
-            <td>{team.stats.statistics.matchs.draws.total}</td>
-            <td>{team.stats.statistics.matchs.loses.total}</td>
+            <td><Link to={`/team/${team.team.id}`}>{team.team.name}</Link></td>
+            <td>{team.stats.fixtures.played.total}</td>
+            <td>{team.stats.fixtures.wins.total}</td>
+            <td>{team.stats.fixtures.draws.total}</td>
+            <td>{team.stats.fixtures.loses.total}</td>
             <td>{team.stats.statistics.points}</td>
         </tr>;
     }
