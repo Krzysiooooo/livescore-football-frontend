@@ -8,7 +8,7 @@ class TeamPage extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = {venue: {}, team: {}, transfersData: {transfers: []}, squad: []};
+        this.state = {venue: {}, team: {}, transfersData: [], squad: []};
         const teamId = props.match.params.id;
         BackendApi.getTeam(teamId).then((team) => {
             this.setState({team: team.team});
@@ -23,9 +23,10 @@ class TeamPage extends React.Component {
     }
 
     renderTransfer(transfer, i) {
+        console.log(transfer);
         return <p key={i}><span
-            className="text-muted">{transfer.transfer_date}</span> {transfer.player_name} left {transfer.team_out.team_name} and
-            joined {transfer.team_in.team_name}</p>
+            className="text-muted">{transfer.date}</span> {transfer.player.name} left {transfer.teams.out.name} and
+            joined {transfer.teams.in.name}</p>
     }
 
     renderSquad(player) {
@@ -51,7 +52,7 @@ class TeamPage extends React.Component {
                 <Col>
                     <Tabs defaultActiveKey="transfers">
                         <Tab eventKey="transfers" title="Transfers">
-                            {this.state.transfersData.transfers.map(this.renderTransfer)}
+                            {this.state.transfersData.map(this.renderTransfer)}
                         </Tab>
                         <Tab eventKey="squad" title="Squad">
                             <Table>
