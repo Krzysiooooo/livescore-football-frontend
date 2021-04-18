@@ -15,9 +15,6 @@ const BackendApi = {
         if (query.page) {
             queryArray.push(`page=${query.page}`);
         }
-        if (query.ids) {
-            queryArray.push(`ids=${query.ids.join(",")}`);
-        }
         if (query.search) {
             queryArray.push(`search=${query.search}`);
         }
