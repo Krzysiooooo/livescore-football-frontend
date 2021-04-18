@@ -35,6 +35,7 @@ class LeaguePage extends React.Component {
     renderTeam(team, index) {
         return <tr key={team.team.id}>
             <td>{index + 1}</td>
+            <td><img src={team.team.logo} className="team-logo"/></td>
             <td><Link to={`/team/${team.team.id}`}>{team.team.name}</Link></td>
             <td>{team.stats.fixtures.played.total}</td>
             <td>{team.stats.fixtures.wins.total}</td>
@@ -74,6 +75,7 @@ class LeaguePage extends React.Component {
                         <thead>
                             <tr>
                                 <th>#</th>
+                                <th></th>
                                 <th>Team</th>
                                 <th className="d-none d-sm-table-cell">Matches</th>
                                 <th className="d-sm-none">M</th>
