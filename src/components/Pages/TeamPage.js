@@ -23,7 +23,6 @@ class TeamPage extends React.Component {
     }
 
     renderTransfer(transfer, i) {
-        console.log(transfer);
         return <p key={i}><span
             className="text-muted">{transfer.date}</span> {transfer.player.name} left {transfer.teams.out.name} and
             joined {transfer.teams.in.name}</p>
@@ -39,13 +38,21 @@ class TeamPage extends React.Component {
 
     render() {
         return <div id="team-page">
-            <Row>
-                <Col>
-                    <h1>{this.state.team.name}</h1>
+            <Row noGutters={true}>
+                <Col xs="2" sm="2">
+                    <Image src={this.state.team.logo} className="team-logo"></Image>
+                </Col>
+                <Col xs="10" sm="4">
+                    <h2>{this.state.team.name}</h2>
                     <p>Since: {this.state.team.founded} <br/>{this.state.team.country}, {this.state.venue.city}</p>
                 </Col>
-                <Col>
-                    <Image src={this.state.team.logo} className="team-logo"></Image>
+                <Col xs="10" sm="4" className="text-right">
+                    <p>{this.state.venue.name}</p>
+                    <p>City: {this.state.venue.city}</p>
+                    <p>Surface: {this.state.venue.surface}</p>
+                </Col>
+                <Col xs="2" sm="2">
+                    <img src={this.state.venue.image} className="team-venue"/>
                 </Col>
             </Row>
             <Row>
