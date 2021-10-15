@@ -4,6 +4,7 @@ import LeaguesPage from "./Pages/LeaguesPage";
 import HomePage from "./Pages/HomePage";
 import LeaguePage from "./Pages/LeaguePage";
 import TeamPage from "./Pages/TeamPage";
+import FixturePage from "./Pages/FixturePage";
 
 class ContentRouting extends React.Component {
     render() {
@@ -12,6 +13,7 @@ class ContentRouting extends React.Component {
             <Route exact path='/leagues' component={LeaguesPage}/>
             <Route exact path='/league/:id' component={LeaguePage}/>
             <Route exact path='/team/:id' component={TeamPage}/>
+            <Route exact path='/fixture/:id' component={FixturePage}/>
         </Switch>)
     }
 }

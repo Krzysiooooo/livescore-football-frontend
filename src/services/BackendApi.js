@@ -47,6 +47,9 @@ const BackendApi = {
     },
     getLiveFixtures: () => {
         return httpRequest(`/fixtures/live`, 'GET');
+    },
+    getFixture: (fixtureId) =>{
+        return httpRequest(`/fixture/${fixtureId}`, 'GET');
     }
 };
 
