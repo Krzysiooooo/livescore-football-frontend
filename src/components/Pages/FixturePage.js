@@ -1,8 +1,9 @@
 import React from 'react'
 import BackendApi from "../../services/BackendApi";
 import _ from "lodash";
-import {Col, Image, Row} from "react-bootstrap";
+import {Col, Image, Row, Tab, Tabs} from "react-bootstrap";
 import './FixturePage.css';
+import FixtureLineup from "../FixtureLineup/FixtureLineup";
 
 
 class FixturePage extends React.Component {
@@ -20,6 +21,7 @@ class FixturePage extends React.Component {
                     this.prepareStatistics();
                 }
             });
+            console.log(this.state.fixture.lineups[0]);
         })
     }
 
@@ -34,6 +36,7 @@ class FixturePage extends React.Component {
         })
         this.setState({statistics: results});
     }
+
 
     render() {
         if (_.isEmpty(this.state.fixture)) {
@@ -53,8 +56,8 @@ class FixturePage extends React.Component {
                     <h3 className="mt-5 away-team-name">{this.state.fixture.teams.away.name}</h3>
                 </Col>
             </Row>
-            <Row>
-                <Col>
+            <Tabs defaultActiveKey="statistics">
+                <Tab eventKey="statistics" title="Statistics">
                     <h3 className="text-center">{_.isEmpty(this.state.statistics) ? "" : "Top stats"}</h3>
                     <table className="table">
                         <tbody>
@@ -67,8 +70,12 @@ class FixturePage extends React.Component {
                             })}
                         </tbody>
                     </table>
-                </Col>
-            </Row>
+                </Tab>
+                <Tab eventKey="lineup" title="Lineup">
+                    <FixtureLineup lineup={this.state.fixture.lineups[0]}></FixtureLineup>
+                    <FixtureLineup lineup={this.state.fixture.lineups[1]}></FixtureLineup>
+                </Tab>
+            </Tabs>
         </div>
     }
 }
