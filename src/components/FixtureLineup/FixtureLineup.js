@@ -20,7 +20,6 @@ class FixtureLineup extends React.Component {
             </thead>
             <tbody>
                 {this.props.lineup.startXI.map(this.renderPlayer)}
-
             </tbody>
         </table>
     }

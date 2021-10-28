@@ -21,7 +21,6 @@ class FixturePage extends React.Component {
                     this.prepareStatistics();
                 }
             });
-            console.log(this.state.fixture.lineups[0]);
         })
     }
 
@@ -72,8 +71,14 @@ class FixturePage extends React.Component {
                     </table>
                 </Tab>
                 <Tab eventKey="lineup" title="Lineup">
-                    <FixtureLineup lineup={this.state.fixture.lineups[0]}></FixtureLineup>
-                    <FixtureLineup lineup={this.state.fixture.lineups[1]}></FixtureLineup>
+                    <Row>
+                        <Col>
+                            <FixtureLineup lineup={this.state.fixture.lineups[0]}></FixtureLineup>
+                        </Col>
+                        <Col>
+                            <FixtureLineup lineup={this.state.fixture.lineups[1]}></FixtureLineup>
+                        </Col>
+                    </Row>
                 </Tab>
             </Tabs>
         </div>
