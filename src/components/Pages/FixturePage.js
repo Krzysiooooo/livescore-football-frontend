@@ -36,6 +36,15 @@ class FixturePage extends React.Component {
         this.setState({statistics: results});
     }
 
+    renderEvent(event, index) {
+        return <tr key={index}>
+            <td>{event.time.elapsed}</td>
+            <td>{event.team.name}</td>
+            <td>{event.type}</td>
+            <td>{event.detail}</td>
+        </tr>
+    }
+
 
     render() {
         if (_.isEmpty(this.state.fixture)) {
@@ -55,7 +64,22 @@ class FixturePage extends React.Component {
                     <h3 className="mt-5 away-team-name">{this.state.fixture.teams.away.name}</h3>
                 </Col>
             </Row>
-            <Tabs defaultActiveKey="statistics">
+            <Tabs defaultActiveKey="events">
+                <Tab eventKey="events" title="Events">
+                    <table className="table">
+                        <thead>
+                            <tr>
+                                <th>Minute</th>
+                                <th>Team</th>
+                                <th>Type</th>
+                                <th>Detail</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {this.state.fixture.events.map(this.renderEvent)}
+                        </tbody>
+                    </table>
+                </Tab>
                 <Tab eventKey="statistics" title="Statistics">
                     <h3 className="text-center">{_.isEmpty(this.state.statistics) ? "" : "Top stats"}</h3>
                     <table className="table">
@@ -84,5 +108,6 @@ class FixturePage extends React.Component {
         </div>
     }
 }
+
 
 export default FixturePage
