@@ -12,11 +12,12 @@ class FixturePage extends React.Component {
         super(props);
         const fixtureId = props.match.params.id;
         this.state = {id: fixtureId, fixture: {}, statistics: []};
+        this.renderEvent = this.renderEvent.bind(this);
     }
 
     componentDidMount() {
         BackendApi.getFixture(this.state.id).then((result) => {
-            this.setState({fixture: result}, () => {
+            this.setState({fixture: result, homeTeamId: result.teams.home.id, awayTeamId: result.teams.away.id}, () => {
                 if (!_.isEmpty(this.state.fixture.statistics)) {
                     this.prepareStatistics();
                 }
@@ -36,12 +37,16 @@ class FixturePage extends React.Component {
         this.setState({statistics: results});
     }
 
+    renderEventDetail(event) {
+        return <p>{event.detail} <br/> {event.player.name}{event.assist.id ? `, ${event.assist.name}` : ""}</p>
+    }
+
     renderEvent(event, index) {
+        const isHome = event.team.id == this.state.homeTeamId ? true : false;
         return <tr key={index}>
-            <td>{event.time.elapsed}</td>
-            <td>{event.team.name}</td>
-            <td>{event.type}</td>
-            <td>{event.detail}</td>
+            <td className="text-right">{isHome ? this.renderEventDetail(event) : ""}</td>
+            <td className="text-center"><span className="badge badge-secondary">{event.time.elapsed}</span></td>
+            <td>{!isHome ? this.renderEventDetail(event) : ""}</td>
         </tr>
     }
 
@@ -67,14 +72,6 @@ class FixturePage extends React.Component {
             <Tabs defaultActiveKey="events">
                 <Tab eventKey="events" title="Events">
                     <table className="table">
-                        <thead>
-                            <tr>
-                                <th>Minute</th>
-                                <th>Team</th>
-                                <th>Type</th>
-                                <th>Detail</th>
-                            </tr>
-                        </thead>
                         <tbody>
                             {this.state.fixture.events.map(this.renderEvent)}
                         </tbody>
