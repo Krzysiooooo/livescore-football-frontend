@@ -1,5 +1,5 @@
 
-const PUBLIC_FRONTEND_URL = " http://ec2-3-16-161-58.us-east-2.compute.amazonaws.com";
+const PUBLIC_FRONTEND_URL = "http://ec2-3-16-161-58.us-east-2.compute.amazonaws.com";
 const PUBLIC_BACKEND_URL = "http://ec2-3-144-234-63.us-east-2.compute.amazonaws.com:4000";
 
 function httpRequest(path, method) {
