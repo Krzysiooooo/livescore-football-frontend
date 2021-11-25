@@ -12,7 +12,7 @@ function App() {
             <Navbar bg="light" expand="lg">
                 <Container>
                     <Navbar.Brand href="#/">
-                        <img src="Logo Lf.png" className="logo" alt="Livescore Football logo"/>
+                        <img src="logolf.png" className="logo" alt="Livescore Football logo"/>
                         Livescore Football
                     </Navbar.Brand>
                     <Navbar.Toggle aria-controls="basic-navbar-nav"/>
