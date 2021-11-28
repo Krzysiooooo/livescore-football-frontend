@@ -11,19 +11,23 @@ class InlineFixture extends React.Component {
     }
 
     render() {
+        let result = this.getHumanDate(this.props.fixture.fixture.date);
+        if(this.props.fixture.goals.home !== null){
+            result = this.props.fixture.goals.home + ":" + this.props.fixture.goals.away;
+        }
         return <Link to={"/fixture/" + this.props.fixture.fixture.id}>
             <div className="inline-fixture">
                 <Row>
                     <Col xs={4}>
-                        <Image src={this.props.fixture.teams.home.logo} className="float-left"></Image>
+                        <Image src={this.props.fixture.teams.home.logo}></Image>
                         <h3>{this.props.fixture.teams.home.name}</h3>
                     </Col>
                     <Col className="text-center score text-primary" xs={4}>
-                        <h3>{this.props.fixture.goals.home} : {this.props.fixture.goals.away}</h3>
+                        <h3>{result}</h3>
                         <span title={this.props.fixture.fixture.date}>{this.props.fixture.fixture.status.elapsed}</span>
                     </Col>
                     <Col className="text-right" xs={4}>
-                        <Image src={this.props.fixture.teams.away.logo} className="float-right"></Image>
+                        <Image src={this.props.fixture.teams.away.logo}></Image>
                         <h3>{this.props.fixture.teams.away.name}</h3>
                     </Col>
                 </Row>

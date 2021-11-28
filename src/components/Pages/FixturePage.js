@@ -2,8 +2,8 @@ import React from 'react'
 import BackendApi from "../../services/BackendApi";
 import _ from "lodash";
 import {Col, Image, Row, Tab, Tabs} from "react-bootstrap";
-import './FixturePage.css';
 import FixtureLineup from "../FixtureLineup/FixtureLineup";
+import moment from "moment";
 
 
 class FixturePage extends React.Component {
@@ -50,10 +50,20 @@ class FixturePage extends React.Component {
         </tr>
     }
 
+    getHumanDate(eventDate) {
+        return {time: moment(eventDate).format("H:mm"), date: moment(eventDate).format("DD MMMM")};
+    }
 
     render() {
         if (_.isEmpty(this.state.fixture)) {
             return <p>Loading data</p>;
+        }
+        let result = "";
+        if (this.state.fixture.goals.home !== null) {
+            result = this.state.fixture.goals.home + ":" + this.state.fixture.goals.away;
+        } else {
+            const humanDate = this.getHumanDate(this.state.fixture.fixture.date);
+            result = <span>{humanDate.date}<br/>{humanDate.time}</span>
         }
         return <div id="fixture-page">
             <Row>
@@ -62,7 +72,7 @@ class FixturePage extends React.Component {
                     <h3 className="mt-5 home-team-name">{this.state.fixture.teams.home.name}</h3>
                 </Col>
                 <Col xs={4} className="text-center">
-                    <h3 className="mt-5 score">{this.state.fixture.goals.home} : {this.state.fixture.goals.away}</h3>
+                    <h3 className="mt-5 score">{result}</h3>
                 </Col>
                 <Col xs={4} className="text-right">
                     <Image src={this.state.fixture.teams.away.logo} className="float-right ml-2"></Image>
