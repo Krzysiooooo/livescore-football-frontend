@@ -1,6 +1,6 @@
 import React from 'react'
 import BackendApi from "../../services/BackendApi";
-import {Row, Col, Image, Tabs, Tab} from "react-bootstrap";
+import {Row, Col, Image, Tabs, Tab, Fade} from "react-bootstrap";
 import './LeaguePage.css';
 import {Link} from "react-router-dom";
 import Table from "react-bootstrap/Table";
@@ -57,7 +57,8 @@ class LeaguePage extends React.Component {
         if (_.isEmpty(this.state.league)){
             return <p>Loading data</p>;
         }
-        return <div id="league-page">
+        return <Fade in={!_.isEmpty(this.state.league)} timeout={5000} appear={true}>
+        <div id="league-page">
             <Row className="header">
                 <Col>
                     <Image src={this.state.league.league.logo}></Image>
@@ -69,7 +70,7 @@ class LeaguePage extends React.Component {
                     </div>
                 </Col>
             </Row>
-            <Tabs defaultActiveKey="table">
+            <Tabs defaultActiveKey="table" >
                 <Tab eventKey="table" title="Table">
                     <Table>
                         <thead>
@@ -99,6 +100,7 @@ class LeaguePage extends React.Component {
                 </Tab>
             </Tabs>
         </div>
+        </Fade>
     }
 }
 

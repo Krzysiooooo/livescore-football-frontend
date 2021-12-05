@@ -1,7 +1,8 @@
 import React from 'react'
 import BackendApi from "../../services/BackendApi";
 import BriefCard from "../BriefCard/BriefCard";
-import {Col, Row, Pagination, Form, InputGroup, Button} from "react-bootstrap";
+import {Col, Row, Pagination, Form, InputGroup, Button, Fade} from "react-bootstrap";
+import _ from "lodash";
 
 
 class LeaguesPage extends React.Component {
@@ -80,48 +81,50 @@ class LeaguesPage extends React.Component {
     }
 
     render() {
-        return (<div>
-            <h2 className="pb-4">Leagues</h2>
+        return (<Fade in={!_.isEmpty(this.state.leagues)} timeout={5000} apper={true}>
+            <div>
+                <h2 className="pb-4">Leagues</h2>
 
-            <Row>
-                <Col xs="12">
-                    <Form onSubmit={this.search}>
-                        <Form.Row>
-                            <Form.Group as={Col} md="4">
-                                <InputGroup>
-                                    <Form.Control
-                                        type="text"
-                                        placeholder="Search league"
-                                        aria-describedby="inputGroupPrepend"
-                                        value={this.state.searchValue}
-                                        onChange={this.onSearchChange}/>
-                                    <InputGroup.Prepend>
-                                        <InputGroup.Text id="inputGroupPrepend" type="submit"
-                                                         as={Button}>Search</InputGroup.Text>
-                                    </InputGroup.Prepend>
-                                </InputGroup>
-                            </Form.Group>
-                        </Form.Row>
-                    </Form>
-                </Col>
-            </Row>
-            <Row>
-                <Col>
-                    <p>Results count: {this.state.totalLeagues}</p>
-                </Col>
-            </Row>
-            <Row>
-                <Col
-                    className="d-flex justify-content-center mb-4"><Pagination>{this.state.paginationItems.map(this.renderPaginationItem)}</Pagination></Col>
-            </Row>
-            <Row>
-                {this.state.leagues.map(this.renderLeague)}
-            </Row>
-            <Row>
-                <Col
-                    className="d-flex justify-content-center mt-4"><Pagination>{this.state.paginationItems.map(this.renderPaginationItem)}</Pagination></Col>
-            </Row>
-        </div>)
+                <Row>
+                    <Col xs="12">
+                        <Form onSubmit={this.search}>
+                            <Form.Row>
+                                <Form.Group as={Col} md="4">
+                                    <InputGroup>
+                                        <Form.Control
+                                            type="text"
+                                            placeholder="Search league"
+                                            aria-describedby="inputGroupPrepend"
+                                            value={this.state.searchValue}
+                                            onChange={this.onSearchChange}/>
+                                        <InputGroup.Prepend>
+                                            <InputGroup.Text id="inputGroupPrepend" type="submit"
+                                                             as={Button}>Search</InputGroup.Text>
+                                        </InputGroup.Prepend>
+                                    </InputGroup>
+                                </Form.Group>
+                            </Form.Row>
+                        </Form>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col>
+                        <p>Results count: {this.state.totalLeagues}</p>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col
+                        className="d-flex justify-content-center mb-4"><Pagination>{this.state.paginationItems.map(this.renderPaginationItem)}</Pagination></Col>
+                </Row>
+                <Row>
+                    {this.state.leagues.map(this.renderLeague)}
+                </Row>
+                <Row>
+                    <Col
+                        className="d-flex justify-content-center mt-4"><Pagination>{this.state.paginationItems.map(this.renderPaginationItem)}</Pagination></Col>
+                </Row>
+            </div>
+        </Fade>)
     }
 }
 
