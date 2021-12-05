@@ -36,3 +36,10 @@
     height: 50px;
     margin-right: 10px;
 }
+
+.loader {
+    position: absolute;
+    z-index: 999999999;
+    left: calc(50vw - 50px);
+    top: calc(50vh - 50px);
+}

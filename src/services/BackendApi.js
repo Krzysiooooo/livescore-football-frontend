@@ -1,3 +1,4 @@
+import _ from "lodash";
 
 const PUBLIC_FRONTEND_URL = "http://ec2-3-16-161-58.us-east-2.compute.amazonaws.com";
 const PUBLIC_BACKEND_URL = "http://ec2-3-144-234-63.us-east-2.compute.amazonaws.com:4000";
@@ -9,10 +10,23 @@ function httpRequest(path, method) {
     }
     const url = API_ADDRESS + path;
     const config = {method: method};
-    return fetch(url, config).then(data => data.json());
+    if (_.isFunction(statusHandler)){
+        statusHandler(true);
+    }
+    return fetch(url, config).then(data => {
+        if (_.isFunction(statusHandler)){
+            statusHandler(false);
+        }
+        return data.json();
+    });
 }
 
+let statusHandler;
+
 const BackendApi = {
+    registerStatusHandler: (handler) => {
+        statusHandler = handler;
+    },
     getLeagues: (query = {}) => {
         let path = `/leagues`;
         const queryArray = [];
@@ -52,7 +66,7 @@ const BackendApi = {
     getLiveFixtures: () => {
         return httpRequest(`/fixtures/live`, 'GET');
     },
-    getFixture: (fixtureId) =>{
+    getFixture: (fixtureId) => {
         return httpRequest(`/fixture/${fixtureId}`, 'GET');
     }
 };

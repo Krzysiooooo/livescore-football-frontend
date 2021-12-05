@@ -11,7 +11,7 @@ import InlineFixture from "../InlineFixture/InlineFixture";
 class LeaguePage extends React.Component {
 
     constructor(props) {
-        super();
+        super(props);
         this.renderGroupedFixture = this.renderGroupedFixture.bind(this);
         this.state = {league: {}, teams: [], fixtures: {}, fixturesKeys: []};
         const leagueId = props.match.params.id;
