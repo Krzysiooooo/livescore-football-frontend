@@ -43,3 +43,8 @@
     left: calc(50vw - 50px);
     top: calc(50vh - 50px);
 }
+
+main .container {
+    min-height: 65vh;
+}
+
