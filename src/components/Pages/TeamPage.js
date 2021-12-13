@@ -46,14 +46,7 @@ class TeamPage extends React.Component {
                     <h2>{this.state.team.name}</h2>
                     <p>Since: {this.state.team.founded} <br/>{this.state.team.country}, {this.state.venue.city}</p>
                 </Col>
-                <Col xs="10" sm="4" className="text-right">
-                    <p>{this.state.venue.name}</p>
-                    <p>City: {this.state.venue.city}</p>
-                    <p>Surface: {this.state.venue.surface}</p>
-                </Col>
-                <Col xs="2" sm="2">
-                    <img src={this.state.venue.image} className="team-venue"/>
-                </Col>
+
             </Row>
             <Row>
                 <Col>
@@ -74,6 +67,20 @@ class TeamPage extends React.Component {
                                     {this.state.squad.map(this.renderSquad)}
                                 </tbody>
                             </Table>
+                        </Tab>
+                        <Tab eventKey="venue" title="Venue">
+                            <Row>
+                            <Col>
+                                <img src={this.state.venue.image} className="team-venue"/>
+                            </Col>
+                            </Row>
+                            <Row>
+                                <Col>
+                                    <p>{this.state.venue.name}</p>
+                                    <p>City: {this.state.venue.city}</p>
+                                    <p>Surface: {this.state.venue.surface}</p>
+                                </Col>
+                            </Row>
                         </Tab>
                     </Tabs>
                 </Col>
