@@ -68,7 +68,8 @@ class LeaguesPage extends React.Component {
                                 onClick={this.onPageChange}>{i}</Pagination.Item>;
     }
 
-    search() {
+    search(event) {
+        event.preventDefault();
         BackendApi.getLeagues({search: this.state.searchValue}).then((result) => {
             this.setState({activePage: 1});
             this.onReceiveLeagues(result);
