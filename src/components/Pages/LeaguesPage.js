@@ -82,7 +82,7 @@ class LeaguesPage extends React.Component {
     }
 
     render() {
-        return (<Fade in={!_.isEmpty(this.state.leagues)} timeout={5000} apper={true}>
+        return (<Fade in={!_.isEmpty(this.state.leagues)} timeout={5000} appear={true}>
             <div>
                 <h2 className="pb-4">Leagues</h2>
 
