@@ -76,8 +76,7 @@ class TeamPage extends React.Component {
                             </Row>
                             <Row>
                                 <Col>
-                                    <p>{this.state.venue.name}</p>
-                                    <p>City: {this.state.venue.city}</p>
+                                    <p>{this.state.venue.name} in {this.state.venue.city}</p>
                                     <p>Surface: {this.state.venue.surface}</p>
                                 </Col>
                             </Row>

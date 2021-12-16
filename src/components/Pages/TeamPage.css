@@ -8,3 +8,11 @@
         width: 100%;
     }
 }
+
+#team-page .team-venue {
+    margin-bottom: 10px;
+}
+
+#team-page .tab-content {
+    margin-top: 15px;
+}
