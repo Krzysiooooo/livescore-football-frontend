@@ -10,7 +10,12 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 The page will reload if you make edits.<br />
 You will also see any lint errors in the console.
 
-## Docker
+## Build
+### Automatic
+1. Run script `build.sh` passing desired new build's docker tag as a first parameter, e.g.: `./build.sh 15`
+2. Push created git tag to remote (origin) repository 
+
+### Manual
 1. Run javascript react build to execute tasks like minification and concatenation of the source codes ```npm run build```
 2. In order to build docker image run following command: ```docker build -t krzysioooo/livescore-football-frontend:1 .```
 3. Test the image using container: ```docker run -p 80:80 krzysioooo/livescore-football-frontend:1```
