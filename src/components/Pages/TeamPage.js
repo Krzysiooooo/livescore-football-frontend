@@ -71,7 +71,7 @@ class TeamPage extends React.Component {
                         <Tab eventKey="venue" title="Venue">
                             <Row>
                             <Col>
-                                <img src={this.state.venue.image} className="team-venue"/>
+                                <img src={this.state.venue.image} className="team-venue" alt="Team's venue"/>
                             </Col>
                             </Row>
                             <Row>

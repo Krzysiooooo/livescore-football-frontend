@@ -42,7 +42,7 @@ class FixturePage extends React.Component {
     }
 
     renderEvent(event, index) {
-        const isHome = event.team.id == this.state.homeTeamId ? true : false;
+        const isHome = event.team.id === this.state.homeTeamId ? true : false;
         return <tr key={index}>
             <td className="text-right">{isHome ? this.renderEventDetail(event) : ""}</td>
             <td className="text-center"><span className="badge badge-secondary">{event.time.elapsed}</span></td>

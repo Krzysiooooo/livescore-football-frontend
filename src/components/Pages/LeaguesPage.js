@@ -35,6 +35,7 @@ class LeaguesPage extends React.Component {
     }
 
     getPaginationArray(activePage, pageCount) {
+        pageCount = pageCount || 0;
         const paginationSize = 10;
         const halfPaginationSize = paginationSize / 2;
         let pageStart = activePage - halfPaginationSize;
@@ -54,7 +55,7 @@ class LeaguesPage extends React.Component {
 
     onReceiveLeagues(result) {
         const paginationItems = this.getPaginationArray(this.state.activePage, result.pageCount);
-        this.setState({leagues: result.leagues, totalLeagues: result.total, paginationItems: paginationItems});
+        this.setState({leagues: result.leagues, totalLeagues: result.total || 0, paginationItems: paginationItems});
     }
 
     renderLeague(league) {
@@ -82,50 +83,60 @@ class LeaguesPage extends React.Component {
     }
 
     render() {
-        return (<Fade in={!_.isEmpty(this.state.leagues)} timeout={5000} appear={true}>
-            <div>
-                <h2 className="pb-4">Leagues</h2>
-
-                <Row>
-                    <Col xs="12">
-                        <Form onSubmit={this.search}>
-                            <Form.Row>
-                                <Form.Group as={Col} md="4">
-                                    <InputGroup>
-                                        <Form.Control
-                                            type="text"
-                                            placeholder="Search league"
-                                            aria-describedby="inputGroupPrepend"
-                                            value={this.state.searchValue}
-                                            onChange={this.onSearchChange}/>
-                                        <InputGroup.Prepend>
-                                            <InputGroup.Text id="inputGroupPrepend" type="submit"
-                                                             as={Button}>Search</InputGroup.Text>
-                                        </InputGroup.Prepend>
-                                    </InputGroup>
-                                </Form.Group>
-                            </Form.Row>
-                        </Form>
-                    </Col>
-                </Row>
-                <Row>
-                    <Col>
-                        <p>Results count: {this.state.totalLeagues}</p>
-                    </Col>
-                </Row>
+        let content;
+        if (_.isEmpty(this.state.leagues)) {
+            content = <Row><Col><p>No leagues to display</p></Col></Row>
+        } else {
+            content = <React.Fragment>
                 <Row>
                     <Col
                         className="d-flex justify-content-center mb-4"><Pagination>{this.state.paginationItems.map(this.renderPaginationItem)}</Pagination></Col>
                 </Row>
-                <Row>
-                    {this.state.leagues.map(this.renderLeague)}
-                </Row>
+                <Fade in={!_.isEmpty(this.state.leagues)} timeout={5000} appear={true}>
+                    <Row>
+                        {/*    <div>*/}
+                        {this.state.leagues.map(this.renderLeague)}
+                        {/*</div>*/}
+                    </Row>
+                </Fade>
                 <Row>
                     <Col
                         className="d-flex justify-content-center mt-4"><Pagination>{this.state.paginationItems.map(this.renderPaginationItem)}</Pagination></Col>
                 </Row>
-            </div>
-        </Fade>)
+            </React.Fragment>
+        }
+        return <div>
+            <h2 className="pb-4">Leagues</h2>
+
+            <Row>
+                <Col xs="12">
+                    <Form onSubmit={this.search}>
+                        <Form.Row>
+                            <Form.Group as={Col} md="4">
+                                <InputGroup>
+                                    <Form.Control
+                                        type="text"
+                                        placeholder="Search league"
+                                        aria-describedby="inputGroupPrepend"
+                                        value={this.state.searchValue}
+                                        onChange={this.onSearchChange}/>
+                                    <InputGroup.Prepend>
+                                        <InputGroup.Text id="inputGroupPrepend" type="submit"
+                                                         as={Button}>Search</InputGroup.Text>
+                                    </InputGroup.Prepend>
+                                </InputGroup>
+                            </Form.Group>
+                        </Form.Row>
+                    </Form>
+                </Col>
+            </Row>
+            <Row>
+                <Col>
+                    <p>Results count: {this.state.totalLeagues}</p>
+                </Col>
+            </Row>
+            {content}
+        </div>
     }
 }
 
