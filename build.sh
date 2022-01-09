@@ -13,7 +13,7 @@ imageName=krzysioooo/livescore-football-frontend:$1
 echo ">> Building docker image: ${imageName}"
 docker build -t ${imageName} .
 
-docker push imageName
+docker push ${imageName}
 
 echo ">> Creating tag: ${1} on local git repository"
 git tag $1
