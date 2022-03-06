@@ -1,5 +1,6 @@
 import * as React from "react";
 import _ from "lodash";
+import MissingData from "../MissingData/MissingData";
 
 class FixtureLineup extends React.Component {
 
@@ -13,7 +14,7 @@ class FixtureLineup extends React.Component {
 
     render() {
         if (!_.has(this.props, "lineup.startXI")) {
-            return "No players lineup data available";
+            return <MissingData></MissingData>
         }
         return <table className="table">
             <thead>

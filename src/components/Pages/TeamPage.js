@@ -3,6 +3,8 @@ import BackendApi from "../../services/BackendApi";
 import {Col, Tab, Tabs, Image, Row} from "react-bootstrap";
 import './TeamPage.css';
 import Table from "react-bootstrap/Table";
+import MissingData from "../MissingData/MissingData";
+import _ from "lodash";
 
 class TeamPage extends React.Component {
 
@@ -28,12 +30,60 @@ class TeamPage extends React.Component {
             joined {transfer.teams.in.name}</p>
     }
 
-    renderSquad(player) {
+    renderTransfers() {
+        if (_.isEmpty(this.state.transfersData)) {
+            return <MissingData></MissingData>
+        } else {
+            this.state.transfersData.map(this.renderTransfer)
+        }
+    }
+
+    renderPlayer(player) {
         return <tr key={player.player.id}>
             <td>{player.player.name}</td>
             <td>{player.player.nationality}</td>
             <td>{player.statistics[0].games.position}</td>
         </tr>
+    }
+
+    renderSquad() {
+        if (_.isEmpty(this.state.squad)) {
+            return <MissingData></MissingData>
+        } else {
+            return <Table>
+                <thead>
+                    <tr>
+                        <th>Player Name</th>
+                        <th>Nationality</th>
+                        <th>Position</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {this.state.squad.map(this.renderPlayer)}
+                </tbody>
+            </Table>
+        }
+
+    }
+
+    renderVenue() {
+        if (_.isEmpty(this.state.venue.name)) {
+            return <MissingData></MissingData>
+        } else {
+            return <div>
+                <Row>
+                    <Col>
+                        <img src={this.state.venue.image} className="team-venue" alt="Team's venue"/>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col>
+                        <p>{this.state.venue.name} in {this.state.venue.city}</p>
+                        <p>Surface: {this.state.venue.surface}</p>
+                    </Col>
+                </Row>
+            </div>
+        }
     }
 
     render() {
@@ -52,34 +102,13 @@ class TeamPage extends React.Component {
                 <Col>
                     <Tabs defaultActiveKey="transfers">
                         <Tab eventKey="transfers" title="Transfers">
-                            {this.state.transfersData.map(this.renderTransfer)}
+                            {this.renderTransfers()}
                         </Tab>
                         <Tab eventKey="squad" title="Squad">
-                            <Table>
-                                <thead>
-                                    <tr>
-                                        <th>Player Name</th>
-                                        <th>Nationality</th>
-                                        <th>Position</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {this.state.squad.map(this.renderSquad)}
-                                </tbody>
-                            </Table>
+                            {this.renderSquad()}
                         </Tab>
                         <Tab eventKey="venue" title="Venue">
-                            <Row>
-                            <Col>
-                                <img src={this.state.venue.image} className="team-venue" alt="Team's venue"/>
-                            </Col>
-                            </Row>
-                            <Row>
-                                <Col>
-                                    <p>{this.state.venue.name} in {this.state.venue.city}</p>
-                                    <p>Surface: {this.state.venue.surface}</p>
-                                </Col>
-                            </Row>
+                            {this.renderVenue()}
                         </Tab>
                     </Tabs>
                 </Col>

@@ -3,6 +3,7 @@ import BackendApi from "../../services/BackendApi";
 import BriefCard from "../BriefCard/BriefCard";
 import {Col, Row, Pagination, Form, InputGroup, Button, Fade} from "react-bootstrap";
 import _ from "lodash";
+import MissingData from "../MissingData/MissingData";
 
 
 class LeaguesPage extends React.Component {
@@ -84,7 +85,10 @@ class LeaguesPage extends React.Component {
 
     render() {
         let content;
-        if (_.isEmpty(this.state.leagues)) {
+        console.log()
+        if (!_.isEmpty(this.state.searchValue) && _.isEmpty(this.state.leagues)) {
+            content = <Row><Col><MissingData text="No data available at the moment"></MissingData></Col></Row>
+        } else if (_.isEmpty(this.state.leagues)) {
             content = <Row><Col><p>No leagues to display</p></Col></Row>
         } else {
             content = <React.Fragment>
@@ -94,9 +98,7 @@ class LeaguesPage extends React.Component {
                 </Row>
                 <Fade in={!_.isEmpty(this.state.leagues)} timeout={5000} appear={true}>
                     <Row>
-                        {/*    <div>*/}
                         {this.state.leagues.map(this.renderLeague)}
-                        {/*</div>*/}
                     </Row>
                 </Fade>
                 <Row>

@@ -4,6 +4,7 @@ import _ from "lodash";
 import {Col, Image, Row, Tab, Tabs} from "react-bootstrap";
 import FixtureLineup from "../FixtureLineup/FixtureLineup";
 import moment from "moment";
+import MissingData from "../MissingData/MissingData";
 
 
 class FixturePage extends React.Component {
@@ -54,6 +55,42 @@ class FixturePage extends React.Component {
         return {time: moment(eventDate).format("H:mm"), date: moment(eventDate).format("DD MMMM")};
     }
 
+    renderStatistics() {
+        if (_.isEmpty(this.state.statistics)) {
+            return <MissingData></MissingData>
+        } else {
+            return <div>
+                <h3 className="text-center">Top stats</h3>
+                <table className="table">
+                    <tbody>
+                        {this.state.statistics.map((stat, i) => {
+                            return <tr key={i}>
+                                <td>{stat.homeValue ? stat.homeValue : "-"}</td>
+                                <td className="text-center">{stat.statistic}</td>
+                                <td className="text-right">{stat.awayValue ? stat.awayValue : "-"}</td>
+                            </tr>
+                        })}
+                    </tbody>
+                </table>
+            </div>
+        }
+    }
+
+    renderEvents() {
+        if (_.isEmpty(this.state.fixture.events)) {
+            return <MissingData></MissingData>
+        } else {
+            return <div>
+                <table className="table">
+                    <tbody>
+                        {this.state.fixture.events.map(this.renderEvent)}
+                    </tbody>
+                </table>
+            </div>
+        }
+    }
+
+
     render() {
         if (_.isEmpty(this.state.fixture)) {
             return <p>Loading data</p>;
@@ -80,27 +117,8 @@ class FixturePage extends React.Component {
                 </Col>
             </Row>
             <Tabs defaultActiveKey="events">
-                <Tab eventKey="events" title="Events">
-                    <table className="table">
-                        <tbody>
-                            {this.state.fixture.events.map(this.renderEvent)}
-                        </tbody>
-                    </table>
-                </Tab>
-                <Tab eventKey="statistics" title="Statistics">
-                    <h3 className="text-center">{_.isEmpty(this.state.statistics) ? "" : "Top stats"}</h3>
-                    <table className="table">
-                        <tbody>
-                            {this.state.statistics.map((stat, i) => {
-                                return <tr key={i}>
-                                    <td>{stat.homeValue ? stat.homeValue : "-"}</td>
-                                    <td className="text-center">{stat.statistic}</td>
-                                    <td className="text-right">{stat.awayValue ? stat.awayValue : "-"}</td>
-                                </tr>
-                            })}
-                        </tbody>
-                    </table>
-                </Tab>
+                <Tab eventKey="events" title="Events">{this.renderEvents()}</Tab>
+                <Tab eventKey="statistics" title="Statistics">{this.renderStatistics()}</Tab>
                 <Tab eventKey="lineup" title="Lineup">
                     <Row>
                         <Col>
