@@ -16,7 +16,8 @@ class LeaguesPage extends React.Component {
             activePage: 1,
             paginationItems: [],
             searchValue: "",
-            totalLeagues: 0
+            totalLeagues: 0,
+            noResultsFound: false
         };
         this.onPageChange = this.onPageChange.bind(this);
         this.renderPaginationItem = this.renderPaginationItem.bind(this);
@@ -73,23 +74,21 @@ class LeaguesPage extends React.Component {
     search(event) {
         event.preventDefault();
         BackendApi.getLeagues({search: this.state.searchValue}).then((result) => {
+            this.setState({noResultsFound: !result.total})
             this.setState({activePage: 1});
             this.onReceiveLeagues(result);
         });
     }
 
-    onSearchChange(event) {
+    onSearchChange(event) {;
         event.preventDefault();
         this.setState({searchValue: event.target.value})
     }
 
     render() {
         let content;
-        console.log()
-        if (!_.isEmpty(this.state.searchValue) && _.isEmpty(this.state.leagues)) {
+        if (this.state.noResultsFound) {
             content = <Row><Col><MissingData text="No data available at the moment"></MissingData></Col></Row>
-        } else if (_.isEmpty(this.state.leagues)) {
-            content = <Row><Col><p>No leagues to display</p></Col></Row>
         } else {
             content = <React.Fragment>
                 <Row>
