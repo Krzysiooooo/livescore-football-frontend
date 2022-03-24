@@ -5,6 +5,7 @@ import {Col, Image, Row, Tab, Tabs} from "react-bootstrap";
 import FixtureLineup from "../FixtureLineup/FixtureLineup";
 import moment from "moment";
 import MissingData from "../MissingData/MissingData";
+import './FixturePage.css';
 
 
 class FixturePage extends React.Component {
@@ -60,7 +61,7 @@ class FixturePage extends React.Component {
             return <MissingData></MissingData>
         } else {
             return <div>
-                <h3 className="text-center">Top stats</h3>
+                <h4 className="tab-heading">Top stats</h4>
                 <table className="table">
                     <tbody>
                         {this.state.statistics.map((stat, i) => {
@@ -81,6 +82,7 @@ class FixturePage extends React.Component {
             return <MissingData></MissingData>
         } else {
             return <div>
+                <h4 className="tab-heading">Events</h4>
                 <table className="table">
                     <tbody>
                         {this.state.fixture.events.map(this.renderEvent)}
@@ -122,9 +124,11 @@ class FixturePage extends React.Component {
                 <Tab eventKey="lineup" title="Lineup">
                     <Row>
                         <Col>
+                            <h4 className="tab-heading">Home</h4>
                             <FixtureLineup lineup={this.state.fixture.lineups[0]}></FixtureLineup>
                         </Col>
                         <Col>
+                            <h4 className="tab-heading">Away</h4>
                             <FixtureLineup lineup={this.state.fixture.lineups[1]}></FixtureLineup>
                         </Col>
                     </Row>
