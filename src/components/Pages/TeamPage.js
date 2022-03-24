@@ -34,7 +34,7 @@ class TeamPage extends React.Component {
         if (_.isEmpty(this.state.transfersData)) {
             return <MissingData></MissingData>
         } else {
-            this.state.transfersData.map(this.renderTransfer)
+            return this.state.transfersData.map(this.renderTransfer)
         }
     }
 
