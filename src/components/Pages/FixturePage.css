@@ -2,3 +2,7 @@
     margin-top: 1.5vh;
     margin-bottom: 1.5vh;
 }
+
+#fixture-page img {
+    max-width: 100%;
+}

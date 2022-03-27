@@ -38,7 +38,7 @@ class HomePage extends React.Component {
             return <Row className="favorite-teams"></Row>
         }
         const teams = this.state.teams.map((team, key) => {
-            return <Col xs="3" key={key}>
+            return <Col xs={12} sm={6} lg={3} key={key}>
                 <div>
                     <Link to={'team/' + team.id}>
                         <Card className="text-center team-card">
@@ -46,7 +46,7 @@ class HomePage extends React.Component {
                                 <div>
                                     <Image src={team.logo}></Image>
                                 </div>
-                                <Card.Title> {team.name} </Card.Title>
+                                <Card.Title className="team-card-title"> {team.name} </Card.Title>
                             </Card.Body>
                         </Card>
                     </Link>

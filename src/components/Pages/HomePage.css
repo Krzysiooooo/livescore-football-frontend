@@ -1,8 +1,16 @@
 #home-page .team-card{
     min-height: 250px;
+    margin-bottom: 20px;
 }
 
 #home-page .favorite-teams{
-    margin-bottom: 20px;
     min-height: 285px;
+}
+
+#home-page .team-card-title{
+    margin-top: 13px;
+}
+
+#home-page .team-card .card-body {
+    padding-bottom: 0px;
 }
