@@ -6,6 +6,7 @@ import FixtureLineup from "../FixtureLineup/FixtureLineup";
 import moment from "moment";
 import MissingData from "../MissingData/MissingData";
 import './FixturePage.css';
+import {Link} from "react-router-dom";
 
 
 class FixturePage extends React.Component {
@@ -40,7 +41,14 @@ class FixturePage extends React.Component {
     }
 
     renderEventDetail(event) {
-        return <p>{event.detail} <br/> {event.player.name}{event.assist.id ? `, ${event.assist.name}` : ""}</p>
+        const links = [<Link to={`/player/${event.player.id}`}>{event.player.name}</Link>];
+        if (event.assist.id) {
+            links.push(", " ,<Link to={`/player/${event.player.id}`}>{event.assist.name}</Link>)
+        }
+        return <p>
+            {event.detail} <br/>
+            {links}
+        </p>
     }
 
     renderEvent(event, index) {

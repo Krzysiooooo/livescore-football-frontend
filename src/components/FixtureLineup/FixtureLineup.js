@@ -1,6 +1,7 @@
 import * as React from "react";
 import _ from "lodash";
 import MissingData from "../MissingData/MissingData";
+import {Link} from "react-router-dom";
 
 class FixtureLineup extends React.Component {
 
@@ -8,7 +9,7 @@ class FixtureLineup extends React.Component {
         const p = player.player;
         return <tr key={key}>
             <td>{p.number}</td>
-            <td>{p.name}</td>
+            <td><Link to={`/player/${player.player.id}`}>{p.name}</Link></td>
         </tr>
     }
 

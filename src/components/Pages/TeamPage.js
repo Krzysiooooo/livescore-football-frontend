@@ -5,6 +5,7 @@ import './TeamPage.css';
 import Table from "react-bootstrap/Table";
 import MissingData from "../MissingData/MissingData";
 import _ from "lodash";
+import {Link} from "react-router-dom";
 
 class TeamPage extends React.Component {
 
@@ -26,7 +27,7 @@ class TeamPage extends React.Component {
 
     renderTransfer(transfer, i) {
         return <p key={i}><span
-            className="text-muted">{transfer.date}</span> {transfer.player.name} left {transfer.teams.out.name} and
+            className="text-muted">{transfer.date}</span> <Link to={`/player/${transfer.player.id}`}> {transfer.player.name} </Link> left {transfer.teams.out.name} and
             joined {transfer.teams.in.name}</p>
     }
 
@@ -40,7 +41,7 @@ class TeamPage extends React.Component {
 
     renderPlayer(player) {
         return <tr key={player.player.id}>
-            <td>{player.player.name}</td>
+            <td><Link to={`/player/${player.player.id}`}>{player.player.name}</Link></td>
             <td>{player.player.nationality}</td>
             <td>{player.statistics[0].games.position}</td>
         </tr>
