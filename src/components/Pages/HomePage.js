@@ -1,18 +1,20 @@
 import React from 'react'
 import BackendApi from "../../services/BackendApi";
 import InlineFixture from "../InlineFixture/InlineFixture";
-import {Col, Fade, Image, Row} from "react-bootstrap";
+import {Col, Fade, Image, Row, Form} from "react-bootstrap";
 import _ from "lodash";
 import {Link} from "react-router-dom";
 import Card from "react-bootstrap/Card";
 import './HomePage.css';
+import FixtureList from "../FixturesList/FixtureList";
+import moment from "moment";
 
 
 class HomePage extends React.Component {
 
     constructor() {
         super();
-        this.state = {fixtures: [], teams: []};
+        this.state = {fixtures: [], teams: [], date: moment().format("YYYY-MM-DD")};
         BackendApi.getLiveFixtures().then(fixtures => {
             this.setState({fixtures: fixtures})
         });
@@ -25,6 +27,7 @@ class HomePage extends React.Component {
         Promise.all(promises).then((results) => {
             this.setState({teams: results});
         });
+        this.onDateChange = this.onDateChange.bind(this);
     }
 
     getTeam(teamId) {
@@ -61,15 +64,27 @@ class HomePage extends React.Component {
         </Row>
     }
 
+    onDateChange(event) {
+        this.setState({date: event.target.value})
+    }
+
     render() {
         return <Fade in={true} appear={true} timeout={5000}>
             <div id="home-page">
-                {this.renderFavoriteTeams()}
                 <Row>
-                    <Col xs="12">
-                        <h2>Games in play</h2>
-                        {this.state.fixtures.map(fixture => <InlineFixture fixture={fixture}
-                                                                           key={fixture.fixture.id}></InlineFixture>)}
+                    <Col>
+                        {this.renderFavoriteTeams()}
+                    </Col>
+                </Row>
+                <Row>
+                    <Col>
+                        <h2>Fixtures for {this.state.date}</h2>
+                        <Form.Control onChange={this.onDateChange} type="date" name="dob" placeholder="Date of Birth"/>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col>
+                        <FixtureList date={this.state.date}></FixtureList>
                     </Col>
                 </Row>
             </div>

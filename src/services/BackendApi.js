@@ -69,6 +69,9 @@ const BackendApi = {
     getFixture: (fixtureId) => {
         return httpRequest(`/fixture/${fixtureId}`, 'GET');
     },
+    getFixtureByDate: (fixtureDate) => {
+        return httpRequest(`/fixture/date/${fixtureDate}`, 'GET');
+    },
     getPlayer: (playerId) => {
         return httpRequest(`/player/${playerId}`, 'GET');
     }
