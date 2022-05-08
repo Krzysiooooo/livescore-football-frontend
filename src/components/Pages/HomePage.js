@@ -1,6 +1,5 @@
 import React from 'react'
 import BackendApi from "../../services/BackendApi";
-import InlineFixture from "../InlineFixture/InlineFixture";
 import {Col, Fade, Image, Row, Form} from "react-bootstrap";
 import _ from "lodash";
 import {Link} from "react-router-dom";
@@ -79,7 +78,7 @@ class HomePage extends React.Component {
                 <Row>
                     <Col>
                         <h2>Fixtures for {this.state.date}</h2>
-                        <Form.Control onChange={this.onDateChange} type="date" name="dob" placeholder="Date of Birth"/>
+                        <Form.Control onChange={this.onDateChange} type="date" className="calendar"/>
                     </Col>
                 </Row>
                 <Row>

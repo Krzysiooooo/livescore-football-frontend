@@ -1,7 +1,7 @@
 import React from 'react'
 import BackendApi from "../../services/BackendApi";
 import InlineFixture from "../InlineFixture/InlineFixture";
-import {Col, Image, Row} from "react-bootstrap";
+import {Col,Row} from "react-bootstrap";
 
 class FixtureList extends React.Component {
 

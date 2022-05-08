@@ -11,9 +11,10 @@ class InlineFixture extends React.Component {
     }
 
     render() {
-        let result = this.getHumanDate(this.props.fixture.fixture.date);
+        const fixtureDate = this.getHumanDate(this.props.fixture.fixture.date);
+        let score = "0:0";
         if(this.props.fixture.goals.home !== null){
-            result = this.props.fixture.goals.home + ":" + this.props.fixture.goals.away;
+            score = this.props.fixture.goals.home + ":" + this.props.fixture.goals.away;
         }
         return <Link to={"/fixture/" + this.props.fixture.fixture.id}>
             <div className="inline-fixture">
@@ -23,7 +24,9 @@ class InlineFixture extends React.Component {
                         <h3>{this.props.fixture.teams.home.name}</h3>
                     </Col>
                     <Col className="text-center score text-primary" xs={4}>
-                        <h3>{result}</h3>
+                        <h3>{fixtureDate}</h3>
+                        <h3>{score}</h3>
+                        <p>{this.props.fixture.fixture.status.long}</p>
                         <span title={this.props.fixture.fixture.date}>{this.props.fixture.fixture.status.elapsed}</span>
                     </Col>
                     <Col className="text-right" xs={4}>
