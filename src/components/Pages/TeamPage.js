@@ -1,6 +1,6 @@
 import React from 'react'
 import BackendApi from "../../services/BackendApi";
-import {Col, Tab, Tabs, Image, Row} from "react-bootstrap";
+import {Col, Tab, Tabs, Image, Row, Breadcrumb} from "react-bootstrap";
 import './TeamPage.css';
 import Table from "react-bootstrap/Table";
 import MissingData from "../MissingData/MissingData";
@@ -11,7 +11,7 @@ class TeamPage extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = {venue: {}, team: {}, transfersData: [], squad: []};
+        this.state = {venue: {}, team: {}, transfersData: [], squad: [], league: {}};
         const teamId = props.match.params.id;
         BackendApi.getTeam(teamId).then((team) => {
             this.setState({team: team.team});
@@ -23,11 +23,15 @@ class TeamPage extends React.Component {
         BackendApi.getTeamsSquad(teamId).then((squad) => {
             this.setState({squad: squad});
         });
+        BackendApi.getLeagueByTeamId(teamId).then((league) => {
+            this.setState({league: league.league})
+        })
     }
 
     renderTransfer(transfer, i) {
         return <p key={i}><span
-            className="text-muted">{transfer.date}</span> <Link to={`/player/${transfer.player.id}`}> {transfer.player.name} </Link> left {transfer.teams.out.name} and
+            className="text-muted">{transfer.date}</span> <Link
+            to={`/player/${transfer.player.id}`}> {transfer.player.name} </Link> left {transfer.teams.out.name} and
             joined {transfer.teams.in.name}</p>
     }
 
@@ -89,6 +93,15 @@ class TeamPage extends React.Component {
 
     render() {
         return <div id="team-page">
+            <Row>
+                <Col>
+                    <Breadcrumb>
+                        <Breadcrumb.Item
+                            href={`/#/league/${this.state.league.id}`}>{this.state.league.name}</Breadcrumb.Item>
+                        <Breadcrumb.Item active>{this.state.team.name}</Breadcrumb.Item>
+                    </Breadcrumb>
+                </Col>
+            </Row>
             <Row noGutters={true}>
                 <Col xs="2" sm="2">
                     <Image src={this.state.team.logo} className="team-logo"></Image>
@@ -97,7 +110,6 @@ class TeamPage extends React.Component {
                     <h2>{this.state.team.name}</h2>
                     <p>Since: {this.state.team.founded} <br/>{this.state.team.country}, {this.state.venue.city}</p>
                 </Col>
-
             </Row>
             <Row>
                 <Col>

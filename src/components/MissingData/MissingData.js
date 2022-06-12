@@ -11,10 +11,10 @@ class MissingData extends React.Component {
     }
 
     render() {
-        return <Row>
+        return <Row className="missing-data-page">
             <Col className="text-center">
             <h3 className="header">{this.state.heading}</h3>
-            <Image src="missingData.jpg" className="missingData-image"></Image>
+            <Image src="missingData.jpg"></Image>
             </Col>
         </Row>
     }
