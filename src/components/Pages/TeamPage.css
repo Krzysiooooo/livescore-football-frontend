@@ -16,3 +16,7 @@
 #team-page .tab-content {
     margin-top: 15px;
 }
+
+#team-page .transfer-logo {
+    max-height:50px;
+}

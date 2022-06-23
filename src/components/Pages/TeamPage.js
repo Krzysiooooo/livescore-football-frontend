@@ -6,6 +6,7 @@ import Table from "react-bootstrap/Table";
 import MissingData from "../MissingData/MissingData";
 import _ from "lodash";
 import {Link} from "react-router-dom";
+import { ArrowRight, ArrowLeft } from 'react-feather';
 
 class TeamPage extends React.Component {
 
@@ -26,20 +27,41 @@ class TeamPage extends React.Component {
         BackendApi.getLeagueByTeamId(teamId).then((league) => {
             this.setState({league: league.league})
         })
+        this.renderTransfer = this.renderTransfer.bind(this);
     }
 
     renderTransfer(transfer, i) {
-        return <p key={i}><span
-            className="text-muted">{transfer.date}</span> <Link
-            to={`/player/${transfer.player.id}`}> {transfer.player.name} </Link> left {transfer.teams.out.name} and
-            joined {transfer.teams.in.name}</p>
+        let typeContent,logo;
+        if (this.state.team.id == transfer.teams.in.id) {
+            typeContent = <span>In <ArrowLeft color="green"/></span>;
+            logo = transfer.teams.out.logo;
+        } else {
+            typeContent = <span>Out <ArrowRight color="red"/></span>;
+            logo = transfer.teams.in.logo;
+        }
+        return <tr>
+            <td>{transfer.date}</td>
+            <td>{transfer.player.name}</td>
+            <td>{typeContent}</td>
+            <td><Image src={logo} className="transfer-logo"/></td>
+        </tr>
     }
 
     renderTransfers() {
         if (_.isEmpty(this.state.transfersData)) {
             return <MissingData></MissingData>
         } else {
-            return this.state.transfersData.map(this.renderTransfer)
+            return <Table striped hover>
+                <thead>
+                    <th>Date</th>
+                    <th>Player</th>
+                    <th>Type</th>
+                    <th>From/To</th>
+                </thead>
+                <tbody>
+                    {this.state.transfersData.map(this.renderTransfer)}
+                </tbody>
+            </Table>
         }
     }
 
