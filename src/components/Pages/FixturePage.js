@@ -7,6 +7,7 @@ import moment from "moment";
 import MissingData from "../MissingData/MissingData";
 import './FixturePage.css';
 import {Link} from "react-router-dom";
+import {AlertCircle, ArrowRight, Circle, Repeat, Smartphone} from "react-feather";
 
 
 class FixturePage extends React.Component {
@@ -40,10 +41,30 @@ class FixturePage extends React.Component {
         this.setState({statistics: results});
     }
 
+    array = [];
+    //TODO ikonka/ikonki dla susbtitution
+    mapping = {
+        "Yellow Card" : <span style={{height: "20px", width: "14px", background: "rgb(254, 206, 47)", display: "inline-block", border:"1px solid #C59F13FF"}}/>,
+        "Red Card" : <span style={{height: "20px", width: "14px", background: "rgb(225,15,15)", display: "inline-block", border:"1px solid #830606FF"}}/>,
+        "Substitution" : <Repeat color="green"/>,
+        "Normal Goal" : <Image src="football-ball.svg" style={{height:"25px"}} />,
+        "Penalty" : <Circle/>,
+        "Own Goal" : <Image src="football-ball.svg" style={{height:"25px"}} />,
+        "Goal Disallowed" : <AlertCircle width="28" height="28"/>
+    };
+
+    mapEventToIcon(event){
+      if (_.dropRight(event.detail, 2).join("") === "Substitution"){
+          event.detail = "Substitution";
+      }
+        return this.mapping[event.detail];
+    }
+
     renderEventDetail(event) {
-        const links = [<Link to={`/player/${event.player.id}`}>{event.player.name}</Link>];
+        const key = event.player.id + event.assist.id;
+        const links = [<Link key={key} to={`/player/${event.player.id}`}>{event.player.name}</Link>];
         if (event.assist.id) {
-            links.push(", " ,<Link to={`/player/${event.player.id}`}>{event.assist.name}</Link>)
+            links.push(", ", <Link key={event.assist.id} to={`/player/${event.player.id}`}>{event.assist.name}</Link>)
         }
         return <p>
             {event.detail} <br/>
@@ -55,7 +76,9 @@ class FixturePage extends React.Component {
         const isHome = event.team.id === this.state.homeTeamId ? true : false;
         return <tr key={index}>
             <td className="text-right">{isHome ? this.renderEventDetail(event) : ""}</td>
+            <td>{isHome ? this.mapEventToIcon(event): ""}</td>
             <td className="text-center"><span className="badge badge-secondary">{event.time.elapsed}</span></td>
+            <td>{!isHome ? this.mapEventToIcon(event): ""}</td>
             <td>{!isHome ? this.renderEventDetail(event) : ""}</td>
         </tr>
     }
