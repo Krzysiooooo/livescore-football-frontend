@@ -17,6 +17,7 @@
 
 #fixture-page .col-away-icon {
     width: 50px;
+    overflow: visible;
 }
 
 #fixture-page .col-event-time {
@@ -57,5 +58,12 @@
     }
 }
 
+#fixture-page .icon-substitution .green ,
+#fixture-page .icon-substitution .red {
+    display:inline-block;
+    height: 20px;
+}
 
-/* breakpoint 1200px*/
+#fixture-page .icon-substitution {
+    width: 40px;
+}

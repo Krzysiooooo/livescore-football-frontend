@@ -58,7 +58,7 @@ class FixturePage extends React.Component {
             display: "inline-block",
             border: "1px solid #830606FF"
         }}/>,
-        "Substitution": <Repeat color="green"/>,
+        "Substitution": <div className="icon-substitution"><Image src="tshirt-green.svg" className="green"/><Image src="tshirt-red.svg" className="red"/></div>,
         "Normal Goal": <Image src="football-ball.svg" style={{height: "25px"}}/>,
         "Penalty": <Circle/>,
         "Own Goal": <Image src="football-ball.svg" style={{height: "25px"}}/>,
