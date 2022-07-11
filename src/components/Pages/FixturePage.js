@@ -44,19 +44,32 @@ class FixturePage extends React.Component {
     array = [];
     //TODO ikonka/ikonki dla susbtitution
     mapping = {
-        "Yellow Card" : <span style={{height: "20px", width: "14px", background: "rgb(254, 206, 47)", display: "inline-block", border:"1px solid #C59F13FF"}}/>,
-        "Red Card" : <span style={{height: "20px", width: "14px", background: "rgb(225,15,15)", display: "inline-block", border:"1px solid #830606FF"}}/>,
-        "Substitution" : <Repeat color="green"/>,
-        "Normal Goal" : <Image src="football-ball.svg" style={{height:"25px"}} />,
-        "Penalty" : <Circle/>,
-        "Own Goal" : <Image src="football-ball.svg" style={{height:"25px"}} />,
-        "Goal Disallowed" : <AlertCircle width="28" height="28"/>
+        "Yellow Card": <span style={{
+            height: "20px",
+            width: "14px",
+            background: "rgb(254, 206, 47)",
+            display: "inline-block",
+            border: "1px solid #C59F13FF"
+        }}/>,
+        "Red Card": <span style={{
+            height: "20px",
+            width: "14px",
+            background: "rgb(225,15,15)",
+            display: "inline-block",
+            border: "1px solid #830606FF"
+        }}/>,
+        "Substitution": <Repeat color="green"/>,
+        "Normal Goal": <Image src="football-ball.svg" style={{height: "25px"}}/>,
+        "Penalty": <Circle/>,
+        "Own Goal": <Image src="football-ball.svg" style={{height: "25px"}}/>,
+        "Goal Disallowed": <AlertCircle width="28" height="28"/>,
+        "Goal Disallowed - Foul": <AlertCircle width="28" height="28"/>
     };
 
-    mapEventToIcon(event){
-      if (_.dropRight(event.detail, 2).join("") === "Substitution"){
-          event.detail = "Substitution";
-      }
+    mapEventToIcon(event) {
+        if (_.dropRight(event.detail, 2).join("") === "Substitution") {
+            event.detail = "Substitution";
+        }
         return this.mapping[event.detail];
     }
 
@@ -75,11 +88,11 @@ class FixturePage extends React.Component {
     renderEvent(event, index) {
         const isHome = event.team.id === this.state.homeTeamId ? true : false;
         return <tr key={index}>
-            <td className="text-right">{isHome ? this.renderEventDetail(event) : ""}</td>
-            <td>{isHome ? this.mapEventToIcon(event): ""}</td>
-            <td className="text-center"><span className="badge badge-secondary">{event.time.elapsed}</span></td>
-            <td>{!isHome ? this.mapEventToIcon(event): ""}</td>
-            <td>{!isHome ? this.renderEventDetail(event) : ""}</td>
+            <td className="col-home-event-detail text-right">{isHome ? this.renderEventDetail(event) : ""}</td>
+            <td className="col-home-icon text-right">{isHome ? this.mapEventToIcon(event) : ""}</td>
+            <td className="col-event-time"><span className="badge badge-secondary">{event.time.elapsed}</span></td>
+            <td className="col-away-icon">{!isHome ? this.mapEventToIcon(event) : ""}</td>
+            <td className="col-away-event-detail">{!isHome ? this.renderEventDetail(event) : ""}</td>
         </tr>
     }
 
@@ -136,7 +149,7 @@ class FixturePage extends React.Component {
             result = <span>{humanDate.date}<br/>{humanDate.time}</span>
         }
         return <div id="fixture-page">
-            <Row>
+            <Row className="page-heading">
                 <Col xs={4}>
                     <Image src={this.state.fixture.teams.home.logo} className="float-left mr-2"></Image>
                     <h3 className="mt-5 home-team-name">{this.state.fixture.teams.home.name}</h3>

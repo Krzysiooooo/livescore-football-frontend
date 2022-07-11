@@ -6,3 +6,56 @@
 #fixture-page img {
     max-width: 100%;
 }
+
+#fixture-page .page-heading {
+    padding-bottom: 20px;
+}
+
+#fixture-page .col-home-icon {
+    width: 50px;
+}
+
+#fixture-page .col-away-icon {
+    width: 50px;
+}
+
+#fixture-page .col-event-time {
+    width: 50px;
+}
+
+#fixture-page .col-home-event-detail {
+    width: 485px;
+}
+
+@media (max-width: 1400px) {
+    #fixture-page .col-home-event-detail {
+        width: 44%;
+    }
+}
+
+@media (max-width: 1200px) {
+    #fixture-page .col-home-event-detail {
+        width: 43%;
+    }
+}
+
+@media (max-width: 992px) {
+    #fixture-page .col-home-event-detail {
+        width: 40%;
+    }
+}
+
+@media (max-width: 768px) {
+    #fixture-page .col-home-event-detail {
+        width: 37%;
+    }
+}
+
+@media (max-width: 576px) {
+    #fixture-page .col-home-event-detail {
+        width: 38%;
+    }
+}
+
+
+/* breakpoint 1200px*/
