@@ -1,4 +1,5 @@
 #!/bin/bash
+set -ue
 
 if [[ -z $1 ]]; then
   echo "Missing script parameter - docker tag"
