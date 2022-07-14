@@ -6,13 +6,25 @@ import Table from "react-bootstrap/Table";
 import MissingData from "../MissingData/MissingData";
 import _ from "lodash";
 import {Link} from "react-router-dom";
-import { ArrowRight, ArrowLeft } from 'react-feather';
+import {ArrowRight, ArrowLeft} from 'react-feather';
 
 class TeamPage extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = {venue: {}, team: {}, transfersData: [], squad: [], league: {}};
+        let parentLeague = {};
+        if (_.isString(this.props.location.search)) {
+            parentLeague = _.chain(this.props.location.search)
+                .trimStart('?')
+                .split('&')
+                .reduce((acc, item) => {
+                    const reducedItem = _.split(item, '=');
+                    acc[reducedItem[0]] = reducedItem[1];
+                    return acc;
+                }, {})
+                .value();
+        }
+        this.state = {venue: {}, team: {}, transfersData: [], squad: [], league: {}, parentLeague };
         const teamId = props.match.params.id;
         BackendApi.getTeam(teamId).then((team) => {
             this.setState({team: team.team});
@@ -28,18 +40,19 @@ class TeamPage extends React.Component {
             this.setState({league: league.league})
         })
         this.renderTransfer = this.renderTransfer.bind(this);
+
     }
 
     renderTransfer(transfer, i) {
-        let typeContent,logo;
-        if (this.state.team.id == transfer.teams.in.id) {
+        let typeContent, logo;
+        if (this.state.team.id === transfer.teams.in.id) {
             typeContent = <span>In <ArrowLeft color="green"/></span>;
             logo = transfer.teams.out.logo;
         } else {
             typeContent = <span>Out <ArrowRight color="red"/></span>;
             logo = transfer.teams.in.logo;
         }
-        return <tr>
+        return <tr key={i}>
             <td>{transfer.date}</td>
             <td>{transfer.player.name}</td>
             <td>{typeContent}</td>
@@ -53,10 +66,12 @@ class TeamPage extends React.Component {
         } else {
             return <Table striped hover>
                 <thead>
-                    <th>Date</th>
-                    <th>Player</th>
-                    <th>Type</th>
-                    <th>From/To</th>
+                    <tr>
+                        <th>Date</th>
+                        <th>Player</th>
+                        <th>Type</th>
+                        <th>rom/To</th>
+                    </tr>
                 </thead>
                 <tbody>
                     {this.state.transfersData.map(this.renderTransfer)}
@@ -119,7 +134,7 @@ class TeamPage extends React.Component {
                 <Col>
                     <Breadcrumb>
                         <Breadcrumb.Item
-                            href={`/#/league/${this.state.league.id}`}>{this.state.league.name}</Breadcrumb.Item>
+                            href={`/#/league/${this.state.parentLeague.leagueId || this.state.league.id}`}>{this.state.parentLeague.leagueName || this.state.league.name}</Breadcrumb.Item>
                         <Breadcrumb.Item active>{this.state.team.name}</Breadcrumb.Item>
                     </Breadcrumb>
                 </Col>

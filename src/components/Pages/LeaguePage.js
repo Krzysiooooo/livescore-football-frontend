@@ -30,13 +30,14 @@ class LeaguePage extends React.Component {
             const fixturesKeys = _.keys(groupedFixtures);
             this.setState({fixtures: groupedFixtures, fixturesKeys: fixturesKeys});
         });
+        this.renderTeam = this.renderTeam.bind(this);
     }
 
     renderTeam(team, index) {
         return <tr key={team.team.id}>
             <td>{index + 1}</td>
             <td><img src={team.team.logo} className="team-logo" alt="Team logo"/></td>
-            <td><Link to={`/team/${team.team.id}`}>{team.team.name}</Link></td>
+            <td><Link to={`/team/${team.team.id}?leagueId=${this.state.league.league.id}&leagueName=${this.state.league.league.name}`}>{team.team.name}</Link></td>
             <td>{team.stats.fixtures.played.total}</td>
             <td>{team.stats.fixtures.wins.total}</td>
             <td>{team.stats.fixtures.draws.total}</td>
