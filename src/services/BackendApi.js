@@ -82,8 +82,8 @@ const BackendApi = {
     searchFixtures: (filters) => {
         return httpRequest(`/fixtures`, 'POST', filters);
     },
-    getPlayer: (playerId) => {
-        return httpRequest(`/player/${playerId}`, 'GET');
+    getPlayer: (playerId, season) => {
+        return httpRequest(`/player/${playerId}/${season}`, 'GET');
     }
 };
 

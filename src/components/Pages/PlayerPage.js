@@ -1,25 +1,32 @@
 import React from 'react'
 import BackendApi from "../../services/BackendApi";
-import {Col, Image, Row} from "react-bootstrap";
+import {Col, DropdownButton, Image, Row, Dropdown} from "react-bootstrap";
 import _ from "lodash";
 import Table from "react-bootstrap/Table";
 import MissingData from "../MissingData/MissingData";
+import moment from "moment";
 
 class PlayerPage extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {player: {player: {}}}
+        const currentYear = moment().year();
+        const seasons = [];
+        for (var i = 0; i < 5; i++) {
+            seasons.push(currentYear - i)
+        }
+        this.state = {player: {player: {}}, seasons: seasons, selectedSeason: currentYear}
+        this.onSeasonSelect = this.onSeasonSelect.bind(this);
     }
 
     componentDidMount() {
         const playerId = this.props.match.params.id;
-        BackendApi.getPlayer(playerId).then((result) => {
+        BackendApi.getPlayer(playerId, this.state.selectedSeason).then((result) => {
             this.setState({player: result})
         });
     }
 
-    renderStatistics(stats) {
-        return <tr>
+    renderStatistics(stats, i) {
+        return <tr key={i}>
             <td>{stats.league.name}</td>
             <td>{stats.games.appearences}</td>
             <td>{stats.goals.total}</td>
@@ -27,6 +34,13 @@ class PlayerPage extends React.Component {
             <td>{stats.cards.yellow}</td>
             <td>{stats.cards.red}</td>
         </tr>
+    }
+
+    onSeasonSelect(season) {
+        this.setState({selectedSeason: season});
+        BackendApi.getPlayer(this.props.match.params.id, season).then((result) => {
+            this.setState({player: result});
+        })
     }
 
 
@@ -49,8 +63,14 @@ class PlayerPage extends React.Component {
                 </Col>
             </Row>
             <Row>
+                <DropdownButton id="dropdown-basic-button" title="Dropdown button" onSelect={this.onSeasonSelect}>
+                    {this.state.seasons.map((season, i) => {
+                        return <Dropdown.Item eventKey={season} key={i}>{season}</Dropdown.Item>
+                    })}
+                </DropdownButton> </Row>
+            <Row>
                 <Col>
-                    <h4 className="mt-2">Statistics</h4>
+                    <h4 className="mt-2">Statistics for {this.state.selectedSeason}</h4>
                     <Table className="mt-2">
                         <thead>
                             <tr>
