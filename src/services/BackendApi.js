@@ -32,7 +32,7 @@ const BackendApi = {
         statusHandler = handler;
     },
     getLeagues: (query = {}) => {
-        let path = `/leagues`;
+        let path = `/api/leagues`;
         const queryArray = [];
         if (query.page) {
             queryArray.push(`page=${query.page}`);
@@ -50,40 +50,40 @@ const BackendApi = {
         return httpRequest(path, 'GET');
     },
     getLeague: (id) => {
-        return httpRequest(`/league/${id}`, 'GET');
+        return httpRequest(`/api/league/${id}`, 'GET');
     },
     getTeams: (leagueId) => {
-        return httpRequest(`/league/${leagueId}/teams`, 'GET');
+        return httpRequest(`/api/league/${leagueId}/teams`, 'GET');
     },
     getTeamsStatistics: (leagueId) => {
-        return httpRequest(`/league/${leagueId}/teams/stats`, 'GET');
+        return httpRequest(`/api/league/${leagueId}/teams/stats`, 'GET');
     },
     getFixturesByLeagueId: (leagueId) => {
-        return httpRequest(`/league/${leagueId}/fixtures`, 'GET');
+        return httpRequest(`/api/league/${leagueId}/fixtures`, 'GET');
     },
     getLeagueByTeamId: (teamId) => {
-        return httpRequest(`/team/${teamId}/league`, 'GET');
+        return httpRequest(`/api/team/${teamId}/league`, 'GET');
     },
     getTeam: (teamId) => {
-        return httpRequest(`/team/${teamId}`, 'GET');
+        return httpRequest(`/api/team/${teamId}`, 'GET');
     },
     getTeamTransfers: (teamId) => {
-        return httpRequest(`/team/${teamId}/transfers`, 'GET');
+        return httpRequest(`/api/team/${teamId}/transfers`, 'GET');
     },
     getTeamsSquad: (teamId) => {
-        return httpRequest(`/team/${teamId}/squad`, 'GET');
+        return httpRequest(`/api/team/${teamId}/squad`, 'GET');
     },
     getLiveFixtures: () => {
-        return httpRequest(`/fixtures/live`, 'GET');
+        return httpRequest(`/api/fixtures/live`, 'GET');
     },
     getFixture: (fixtureId) => {
-        return httpRequest(`/fixture/${fixtureId}`, 'GET');
+        return httpRequest(`/api/fixture/${fixtureId}`, 'GET');
     },
     searchFixtures: (filters) => {
-        return httpRequest(`/fixtures`, 'POST', filters);
+        return httpRequest(`/api/fixtures`, 'POST', filters);
     },
     getPlayer: (playerId, season) => {
-        return httpRequest(`/player/${playerId}/${season}`, 'GET');
+        return httpRequest(`/api/player/${playerId}/${season}`, 'GET');
     }
 };
 
