@@ -1,13 +1,14 @@
 import _ from "lodash";
 
-const PUBLIC_FRONTEND_URL = "http://ec2-3-16-161-58.us-east-2.compute.amazonaws.com";
-const PUBLIC_BACKEND_URL = "http://ec2-3-144-234-63.us-east-2.compute.amazonaws.com:4000";
+const PUBLIC_FRONTEND_URL = "https://eternal-wonder-362212.lm.r.appspot.com";
+const PUBLIC_BACKEND_URL = "https://eternal-wonder-362212.lm.r.appspot.com";
 
 function httpRequest(path, method, payload) {
     let API_ADDRESS = "http://localhost:4000";
     if (window.location.origin === PUBLIC_FRONTEND_URL) {
         API_ADDRESS = PUBLIC_BACKEND_URL;
     }
+
     const url = API_ADDRESS + path;
     const config = {method: method};
     if(method == "POST" && !_.isEmpty(payload)){
